@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <!-- Русские строки -->
+    <sys:String x:Key="Welcome">Добро пожаловать!</sys:String>
+    <sys:String x:Key="Login">Логин</sys:String>
+    <sys:String x:Key="Password">Пароль</sys:String>
+    <sys:String x:Key="Entrance">Вход</sys:String>
+    <sys:String x:Key="Registration">Регистрация</sys:String>
+
+    <sys:String x:Key="RegistrationWord">Регистрация</sys:String>
+    <sys:String x:Key="Name">Имя</sys:String>
+    <sys:String x:Key="Birthday">Дата рождения</sys:String>
+    <sys:String x:Key="RegistrationButton">Зарегистрироваться</sys:String>
+    <sys:String x:Key="Back">Отмена</sys:String>
+    <sys:String x:Key="TooltipLogin">Логин может содержать буквы латинского алфавита и цифры</sys:String>
+    <sys:String x:Key="TooltipPassword">Пароль должен содержать от 8 до 12 символов</sys:String>
+    <sys:String x:Key="Gender">Пол</sys:String>
+    <sys:String x:Key="Female">Ж</sys:String>
+    <sys:String x:Key="Male">М</sys:String>
+
+    <sys:String x:Key="TabParameters">Параметры</sys:String>
+    <sys:String x:Key="TabResults">Результаты</sys:String>
+    <sys:String x:Key="RecordingDate">Дата создания записи</sys:String>
+    <sys:String x:Key="Hight">Рост</sys:String>
+    <sys:String x:Key="Weight">Вес</sys:String>
+    <sys:String x:Key="GirthWaist">Обхват талии</sys:String>
+    <sys:String x:Key="GirthBreast">Обхват бёдер</sys:String>
+    <sys:String x:Key="GirthHips">Обхват груди</sys:String>
+
+    <!-- Английские строки -->
+    <sys:String x:Key="Welcome_en">Welcome!</sys:String>
+    <sys:String x:Key="Login_en">Login</sys:String>
+    <sys:String x:Key="Password_en">Password</sys:String>
+    <sys:String x:Key="Entrance_en">Log in</sys:String>
+    <sys:String x:Key="Registration_en">Registration</sys:String>
+
+    <sys:String x:Key="RegistrationWord_en">Registration</sys:String>
+    <sys:String x:Key="Name_en">Name</sys:String>
+    <sys:String x:Key="Birthday_en">Date of birth</sys:String>
+    <sys:String x:Key="RegistrationButton_en">Register</sys:String>
+    <sys:String x:Key="Back_en">Cancel</sys:String>
+    <sys:String x:Key="TooltipLogin_en">The login can contain letters of the Latin alphabet and numbers</sys:String>
+    <sys:String x:Key="TooltipPassword_en">The password must contain from 8 to 12 characters</sys:String>
+    <sys:String x:Key="Gender_en">Gender</sys:String>
+    <sys:String x:Key="Female_en">F</sys:String>
+    <sys:String x:Key="Male_en">M</sys:String>
+
+    <sys:String x:Key="TabParameters_en">Parameters</sys:String>
+    <sys:String x:Key="TabResults_en">Results</sys:String>
+    <sys:String x:Key="RecordingDate_en">Recording Date</sys:String>
+    <sys:String x:Key="Hight_en">Hight</sys:String>
+    <sys:String x:Key="Weight_en">Weight</sys:String>
+    <sys:String x:Key="GirthWaist_en">Girth Waist</sys:String>
+    <sys:String x:Key="GirthBreast_en">Girth Breast</sys:String>
+    <sys:String x:Key="GirthHips_en">Girth Hips</sys:String>
+
+</ResourceDictionary>

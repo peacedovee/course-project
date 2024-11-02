@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="pictures\iconVIO.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="ResourceDictionary.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="pictures\iconVIO.ico" />
+    <Resource Include="ResourceDictionary.xaml" />
+  </ItemGroup>
+
+</Project>

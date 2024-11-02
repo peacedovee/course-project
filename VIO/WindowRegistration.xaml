@@ -1,0 +1,69 @@
+﻿<Window x:Name="windowRegistration" x:Class="VIO.WindowRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VIO"
+        mc:Ignorable="d"
+        Title="VIO" Height="450" Width="800" Background="#EEE2DC" Icon="pictures\iconVIO.ico">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="780" Height="415">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="labelRegistration" Grid.Column="1" Content="{DynamicResource RegistrationWord}" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top"
+            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Margin="279,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
+            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25"
+                 ToolTip="{DynamicResource TooltipLogin}" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="279,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
+            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="textBoxPassword" HorizontalAlignment="Left" Margin="279,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
+            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" 
+                 ToolTip="{DynamicResource TooltipPassword}" Grid.ColumnSpan="2"/>
+        <Button x:Name="buttonRegisrtation" Content="{DynamicResource RegistrationButton}" HorizontalAlignment="Left" Margin="279,272,0,0" VerticalAlignment="Top" 
+            Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="304" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61"
+            Height="30" Grid.ColumnSpan="2"/>
+        <Button x:Name="buttonBack" Grid.Column="1" Content="{DynamicResource Back}" HorizontalAlignment="Center" Margin="0,307,0,0" VerticalAlignment="Top" 
+            Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="304" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61"
+            Height="30" Click="buttonBack_Click"/>
+        <Label x:Name="labelLogin" Grid.Column="0" Content="{DynamicResource Login}" HorizontalAlignment="Left" Margin="134,105,0,0" VerticalAlignment="Top"
+            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
+        <Label x:Name="labelName" Grid.Column="0" Content="{DynamicResource Name}" HorizontalAlignment="Left" Margin="134,140,0,0" VerticalAlignment="Top"
+            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
+        <Label x:Name="labelBirthday" Grid.Column="0" Content="{DynamicResource Birthday}" HorizontalAlignment="Left" Margin="134,210,0,0" VerticalAlignment="Top"
+            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
+        <Label x:Name="labelPassword" Grid.Column="0" Content="{DynamicResource Password}" HorizontalAlignment="Left" Margin="134,175,0,0" VerticalAlignment="Top"
+            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
+        <Label x:Name="labelGender" Grid.Column="1" Content="{DynamicResource Gender}" HorizontalAlignment="Left" Margin="159,210,0,0" VerticalAlignment="Top"
+        FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
+        <DatePicker HorizontalAlignment="Left" Margin="279,210,0,0" VerticalAlignment="Top" Language="en-US"
+            FontFamily="Cooper Black" FontSize="17" Background="#EEE2DC" Foreground="#123C69" Width="152" Grid.ColumnSpan="2">
+            <DatePicker.Resources>
+                <Style TargetType="{x:Type DatePickerTextBox}">
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                                <TextBox x:Name="PART_TextBox" Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Foreground="#123C69" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="235,210,0,0" VerticalAlignment="Top" Width="69"
+                  FontFamily="Cooper Black" FontSize="17" Background="#EEE2DC" Foreground="#123C69">
+            <ComboBoxItem x:Name="ComboBoxFemale" Content="{DynamicResource Female}" />
+            <ComboBoxItem x:Name="ComboBoxMale" Content="{DynamicResource Male}" />
+        </ComboBox>
+    </Grid>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+</Window>
