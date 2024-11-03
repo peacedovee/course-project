@@ -70,5 +70,12 @@ namespace VIO
             labelPassword.Content = Application.Current.Resources["Password"];
             buttonRegistration.Content = Application.Current.Resources["Registration"];
         }
+
+        private void buttonEntrance_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
+            var windowParameters = new WindowParameters(selectedLanguage);
+            windowParameters.ShowDialog();
+        }
     }
 }

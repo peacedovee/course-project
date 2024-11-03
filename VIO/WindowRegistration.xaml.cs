@@ -59,12 +59,10 @@ namespace VIO
 
             labelRegistration.Content = Application.Current.Resources["RegistrationWord"];
             labelLogin.Content = Application.Current.Resources["Login"];
-            labelLogin.ToolTip = Application.Current.Resources["TooltipLogin"];
             labelName.Content = Application.Current.Resources["Name"];
             labelBirthday.Content = Application.Current.Resources["Birthday"];
             labelPassword.Content = Application.Current.Resources["Password"];
             labelGender.Content = Application.Current.Resources["Gender"];
-            labelPassword.ToolTip = Application.Current.Resources["TooltipPassword"];
             buttonRegisrtation.Content = Application.Current.Resources["RegistrationButton"];
             buttonBack.Content = Application.Current.Resources["Back"];
 
@@ -85,6 +83,11 @@ namespace VIO
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonRegisrtation_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

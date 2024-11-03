@@ -11,32 +11,30 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="labelRegistration" Grid.Column="1" Content="{DynamicResource RegistrationWord}" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top"
+        <Label x:Name="labelRegistration" Grid.Column="1" Content="{DynamicResource RegistrationWord}" HorizontalAlignment="Left" Margin="34,42,0,0" VerticalAlignment="Top"
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
         <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Margin="279,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
-            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25"
-                 ToolTip="{DynamicResource TooltipLogin}" Grid.ColumnSpan="2"/>
+            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" Grid.ColumnSpan="2"/>
         <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="279,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
             Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" Grid.ColumnSpan="2"/>
         <TextBox x:Name="textBoxPassword" HorizontalAlignment="Left" Margin="279,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
-            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" 
-                 ToolTip="{DynamicResource TooltipPassword}" Grid.ColumnSpan="2"/>
+            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" Grid.ColumnSpan="2"/>
         <Button x:Name="buttonRegisrtation" Content="{DynamicResource RegistrationButton}" HorizontalAlignment="Left" Margin="279,272,0,0" VerticalAlignment="Top" 
             Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="304" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61"
-            Height="30" Grid.ColumnSpan="2"/>
-        <Button x:Name="buttonBack" Grid.Column="1" Content="{DynamicResource Back}" HorizontalAlignment="Center" Margin="0,307,0,0" VerticalAlignment="Top" 
+            Height="30" Grid.ColumnSpan="2" Click="buttonRegisrtation_Click"/>
+        <Button x:Name="buttonBack" Content="{DynamicResource Back}" HorizontalAlignment="Left" Margin="279,307,0,0" VerticalAlignment="Top" 
             Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="304" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61"
-            Height="30" Click="buttonBack_Click"/>
-        <Label x:Name="labelLogin" Grid.Column="0" Content="{DynamicResource Login}" HorizontalAlignment="Left" Margin="134,105,0,0" VerticalAlignment="Top"
+            Height="30" Grid.ColumnSpan="2" Click="buttonBack_Click"/>
+        <Label x:Name="labelLogin" Grid.Column="0" Content="{DynamicResource Login}" HorizontalAlignment="Left" Margin="128,105,0,0" VerticalAlignment="Top"
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
-        <Label x:Name="labelName" Grid.Column="0" Content="{DynamicResource Name}" HorizontalAlignment="Left" Margin="134,140,0,0" VerticalAlignment="Top"
+        <Label x:Name="labelName" Grid.Column="0" Content="{DynamicResource Name}" HorizontalAlignment="Left" Margin="128,140,0,0" VerticalAlignment="Top"
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
-        <Label x:Name="labelBirthday" Grid.Column="0" Content="{DynamicResource Birthday}" HorizontalAlignment="Left" Margin="134,210,0,0" VerticalAlignment="Top"
+        <Label x:Name="labelBirthday" Grid.Column="0" Content="{DynamicResource Birthday}" HorizontalAlignment="Left" Margin="128,210,0,0" VerticalAlignment="Top"
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
-        <Label x:Name="labelPassword" Grid.Column="0" Content="{DynamicResource Password}" HorizontalAlignment="Left" Margin="134,175,0,0" VerticalAlignment="Top"
+        <Label x:Name="labelPassword" Grid.Column="0" Content="{DynamicResource Password}" HorizontalAlignment="Left" Margin="128,175,0,0" VerticalAlignment="Top"
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
-        <Label x:Name="labelGender" Grid.Column="1" Content="{DynamicResource Gender}" HorizontalAlignment="Left" Margin="159,210,0,0" VerticalAlignment="Top"
-        FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
+        <Label x:Name="labelGender" Content="{DynamicResource Gender}" HorizontalAlignment="Left" Margin="109,210,0,0" VerticalAlignment="Top"
+            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Grid.Column="1"/>
         <DatePicker HorizontalAlignment="Left" Margin="279,210,0,0" VerticalAlignment="Top" Language="en-US"
             FontFamily="Cooper Black" FontSize="17" Background="#EEE2DC" Foreground="#123C69" Width="152" Grid.ColumnSpan="2">
             <DatePicker.Resources>
@@ -51,11 +49,14 @@
                 </Style>
             </DatePicker.Resources>
         </DatePicker>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="235,210,0,0" VerticalAlignment="Top" Width="69"
-                  FontFamily="Cooper Black" FontSize="17" Background="#EEE2DC" Foreground="#123C69">
+        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" 
+          Margin="510,210,0,0" Width="70"
+          FontFamily="Cooper Black" FontSize="17" 
+          Background="#EEE2DC" Foreground="#123C69">
             <ComboBoxItem x:Name="ComboBoxFemale" Content="{DynamicResource Female}" />
             <ComboBoxItem x:Name="ComboBoxMale" Content="{DynamicResource Male}" />
         </ComboBox>
+
     </Grid>
 
     <Window.Resources>

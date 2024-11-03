@@ -56,12 +56,15 @@ namespace VIO
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(updatedResources);
 
+            tabParameters.Header = Application.Current.Resources["TabParameters"];
+            tabResults.Header = Application.Current.Resources["TabResults"];
             labelDate.Content = Application.Current.Resources["RecordingDate"];
             labelHight.Content = Application.Current.Resources["Hight"];
             labelWeight.Content = Application.Current.Resources["Weight"];
             labelGirthWaist.Content = Application.Current.Resources["GirthWaist"];
             labelGirthHips.Content = Application.Current.Resources["GirthHips"];
             labelGirthBreast.Content = Application.Current.Resources["GirthBreast"];
+            buttonRecord.Content = Application.Current.Resources["Record"];
         }
     }
 }
