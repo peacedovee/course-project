@@ -60,13 +60,61 @@
                                        FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="40.00" Maximum="200.00" 
                                        Value="40.00" Increment="0.01" FormatString="F2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabResults" Header="{DynamicResource TabResults}">
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC"/>
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="406"/>
+                        <ColumnDefinition Width="Auto" MinWidth="177"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="labelPlan" Grid.Column="0" Content="{DynamicResource IndividualPlan}" HorizontalAlignment="Left" Margin="300,50,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="221" Grid.ColumnSpan="2"/>
+                    <Image HorizontalAlignment="Left" Height="233" Margin="28,87,0,0" VerticalAlignment="Top" Width="130"/>
+                    <Label x:Name="labelType" Content="{DynamicResource Type}" HorizontalAlignment="Left" Margin="28,337,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="166"/>
+                    <Label x:Name="labelGoal" Content="{DynamicResource Purpose}" HorizontalAlignment="Left" Margin="174,139,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="72"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" 
+                        Margin="246,139,0,0" Width="193"
+                        FontFamily="Cooper Black" FontSize="15" 
+                        Background="#EEE2DC" Foreground="#123C69">
+                        <ComboBoxItem x:Name="ComboBoxGainWeight" Content="{DynamicResource GainWeight}" />
+                        <ComboBoxItem x:Name="ComboBoxLoseWeight" Content="{DynamicResource LoseWeight}" />
+                        <ComboBoxItem x:Name="ComboBoxMaintainWeight" Content="{DynamicResource MaintainWeight}" />
+                    </ComboBox>
+                    <Label x:Name="labelBMI" Content="{DynamicResource BMI}" HorizontalAlignment="Left" Margin="174,101,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="179"/>
+                    <Label x:Name="labelCalories" Content="{DynamicResource Calories}" HorizontalAlignment="Left" Margin="174,177,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="284" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelWater" Content="{DynamicResource Water}" HorizontalAlignment="Left" Margin="174,215,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="284" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelBMINumber" Content="0" HorizontalAlignment="Left" Margin="356,101,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="79"/>
+                    <Label x:Name="labelCaloriesNumber" Content="0" HorizontalAlignment="Left" Margin="2,177,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="88" Grid.Column="1"/>
+                    <Label x:Name="labelWaterNumber" Content="0" HorizontalAlignment="Left" Margin="2,215,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="88" Grid.Column="1"/>
+                    <Button x:Name="buttonPlan" Content="{DynamicResource MealPlan}" HorizontalAlignment="Left" Margin="180,253,0,0" VerticalAlignment="Top" 
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30"/>
+                    <Label x:Name="labelActivity" Content="{DynamicResource PhysicalActivity}" HorizontalAlignment="Left" Margin="104,101,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="217" Grid.Column="1"/>
+                    <Slider x:Name="sliderActivity" Grid.Column="1" Minimum="1" Maximum="3" HorizontalAlignment="Left" Margin="104,139,0,0" 
+                            TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Top" Width="190" Height="15" />
+                    <TextBlock x:Name="sliderValue" Text="{Binding ElementName=sliderActivity, Path=Value}" FontFamily="Cooper Black" FontSize="15"
+                               Foreground="#AC3B61" HorizontalAlignment="Left" Margin="107,163,0,0" VerticalAlignment="Top" Width="190" Height="15" Grid.Column="1"/>
+                    <Button x:Name="buttonWorkout" Content="{DynamicResource Workout}" HorizontalAlignment="Left" Margin="104,253,0,0" VerticalAlignment="Top" 
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="193" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Grid.Column="1"/>
+                    <Label x:Name="labelActivityLevelLow" Content="{DynamicResource ActivityLevelLow}" HorizontalAlignment="Left" Margin="103,180,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
+                    <Label x:Name="labelActivityLevelMedium" Content="{DynamicResource ActivityLevelMedium}" HorizontalAlignment="Left" Margin="103,200,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
+                    <Label x:Name="labelActivityLevelHigh" Content="{DynamicResource ActivityLevelHigh}" HorizontalAlignment="Left" Margin="103,220,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
+                </Grid>
             </TabItem>
         </TabControl>
+
     </Grid>
 
     <Window.Resources>

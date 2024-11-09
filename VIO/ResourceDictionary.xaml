@@ -27,6 +27,25 @@
     <sys:String x:Key="GirthHips">Обхват груди</sys:String>
     <sys:String x:Key="Record">Сохранить</sys:String>
 
+    <sys:String x:Key="IndividualPlan">Индивидуальный план</sys:String>
+    <sys:String x:Key="Type">Ваш тип фигуры</sys:String>
+    <sys:String x:Key="BMI">Индекс массы тела</sys:String>
+    <sys:String x:Key="Calories">Количество калорий на день</sys:String>
+    <sys:String x:Key="Water">Количество воды на день(мл)</sys:String>
+    <sys:String x:Key="Purpose">Цель</sys:String>
+    <sys:String x:Key="PhysicalActivity">Уровнь физ. активности</sys:String>
+    <sys:String x:Key="MealPlan">Получить план питания</sys:String>
+    <sys:String x:Key="Workout">Получить тренировку</sys:String>
+    <sys:String x:Key="Vegetarian">Вегетарианский</sys:String>
+    <sys:String x:Key="Vegan">Веганский</sys:String>
+    <sys:String x:Key="Standart">Стандартный</sys:String>
+    <sys:String x:Key="GainWeight">Набрать вес</sys:String>
+    <sys:String x:Key="LoseWeight">Сбросить вес</sys:String>
+    <sys:String x:Key="MaintainWeight">Поддержать вес</sys:String>
+    <sys:String x:Key="ActivityLevelLow">1. Низкий</sys:String>
+    <sys:String x:Key="ActivityLevelMedium">2. Средний</sys:String>
+    <sys:String x:Key="ActivityLevelHigh">3. Высокий</sys:String>
+
     <!-- Английские строки -->
     <sys:String x:Key="Welcome_en">Welcome!</sys:String>
     <sys:String x:Key="Login_en">Login</sys:String>
@@ -52,5 +71,24 @@
     <sys:String x:Key="GirthBreast_en">Girth Breast</sys:String>
     <sys:String x:Key="GirthHips_en">Girth Hips</sys:String>
     <sys:String x:Key="Record_en">Save</sys:String>
+
+    <sys:String x:Key="IndividualPlan_en">Individual plan</sys:String>
+    <sys:String x:Key="Type_en">Your type of figure</sys:String>
+    <sys:String x:Key="BMI_en">Body mass index</sys:String>
+    <sys:String x:Key="Calories_en">The number of calories per day</sys:String>
+    <sys:String x:Key="Water_en">The amount of water per day(ml)</sys:String>
+    <sys:String x:Key="Purpose_en">Goal</sys:String>
+    <sys:String x:Key="PhysicalActivity_en">Physical activity</sys:String>
+    <sys:String x:Key="MealPlan_en">Get a meal plan</sys:String>
+    <sys:String x:Key="Workout_en">Get a workout</sys:String>
+    <sys:String x:Key="Vegetarian_en">Vegetarian</sys:String>
+    <sys:String x:Key="Vegan_en">Vegan</sys:String>
+    <sys:String x:Key="Standart_en">Standart</sys:String>
+    <sys:String x:Key="GainWeight_en">Gain weight</sys:String>
+    <sys:String x:Key="LoseWeight_en">Lose weight</sys:String>
+    <sys:String x:Key="MaintainWeight_en">Maintain weight</sys:String>
+    <sys:String x:Key="ActivityLevelLow_en">1. Low</sys:String>
+    <sys:String x:Key="ActivityLevelMedium_en">2. Medium</sys:String>
+    <sys:String x:Key="ActivityLevelHigh_en">3. High</sys:String>
 
 </ResourceDictionary>

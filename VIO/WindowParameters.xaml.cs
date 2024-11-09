@@ -65,6 +65,23 @@ namespace VIO
             labelGirthHips.Content = Application.Current.Resources["GirthHips"];
             labelGirthBreast.Content = Application.Current.Resources["GirthBreast"];
             buttonRecord.Content = Application.Current.Resources["Record"];
+
+            labelPlan.Content = Application.Current.Resources["IndividualPlan"];
+            labelType.Content = Application.Current.Resources["Type"];
+            labelBMI.Content = Application.Current.Resources["BMI"];
+            labelCalories.Content = Application.Current.Resources["Calories"];
+            labelWater.Content = Application.Current.Resources["Water"];
+            labelGoal.Content = Application.Current.Resources["Purpose"];
+            ComboBoxGainWeight.Content = Application.Current.Resources["GainWeight"];
+            ComboBoxLoseWeight.Content = Application.Current.Resources["LoseWeight"];
+            ComboBoxMaintainWeight.Content = Application.Current.Resources["MaintainWeight"];
+            buttonPlan.Content = Application.Current.Resources["MealPlan"];
+            labelActivity.Content = Application.Current.Resources["PhysicalActivity"];
+            buttonWorkout.Content = Application.Current.Resources["Workout"];
+            labelActivityLevelLow.Content = Application.Current.Resources["ActivityLevelLow"];
+            labelActivityLevelMedium.Content = Application.Current.Resources["ActivityLevelMedium"];
+            labelActivityLevelHigh.Content = Application.Current.Resources["ActivityLevelHigh"];
+
         }
     }
 }
