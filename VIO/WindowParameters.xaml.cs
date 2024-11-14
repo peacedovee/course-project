@@ -45,6 +45,7 @@ namespace VIO
             SaveSettings();
         }
 
+        // сохранение параметров пользователя при закрытии окна
         private void SaveSettings()
         {
             iniFile.Write("Parameters", "Height", UpDownHight.Value.ToString());
@@ -54,6 +55,7 @@ namespace VIO
             iniFile.Write("Parameters", "Weight", UpDownGirthWeight.Value.ToString());
         }
 
+        // добавление последних введённых параметров при открытии окна
         private void LoadSettings()
         {
             UpDownHight.Value = int.TryParse(iniFile.Read("Parameters", "Height"), out int height) ? height : 10;
@@ -63,6 +65,7 @@ namespace VIO
             UpDownGirthWeight.Value = int.TryParse(iniFile.Read("Parameters", "Weight"), out int weight) ? weight : 10;
         }
 
+        // изменение языка
         private void OnLanguageChanged(string lang)
         {
             ChangeLanguage(lang);
@@ -117,9 +120,13 @@ namespace VIO
             labelActivityLevelLow.Content = Application.Current.Resources["ActivityLevelLow"];
             labelActivityLevelMedium.Content = Application.Current.Resources["ActivityLevelMedium"];
             labelActivityLevelHigh.Content = Application.Current.Resources["ActivityLevelHigh"];
-
+            TextBlockPreferences.Text = (string)Application.Current.Resources["FoodPreferences"];
+            RBVegetarian.Content = Application.Current.Resources["Vegetarian"];
+            RBVegan.Content = Application.Current.Resources["Vegan"];
+            RBStandart.Content = Application.Current.Resources["Standart"];
         }
 
+        // вычисление типа фигуры
         private string DetermineBodyType(double waist, double hips, double bust)
         {
             if (hips > bust && hips > waist)
@@ -148,6 +155,7 @@ namespace VIO
             }
         }
 
+        // вывод изображения с типом фигуры
         private void DisplayBodyTypeImage(string bodyType)
         {
             try
@@ -158,6 +166,7 @@ namespace VIO
                 bitmap.UriSource = new Uri(imagePath, UriKind.Relative);
                 bitmap.EndInit();
                 BodyTypeImage.Source = bitmap;
+                BodyTypeImage.Stretch = Stretch.Uniform;
             }
             catch (Exception ex)
             {
@@ -165,6 +174,7 @@ namespace VIO
             }
         }
 
+        // кнопка записи в базу данных (пока что в ней код для вывода изображения, он не работает, пусть повисит)
         private void buttonRecord_Click(object sender, RoutedEventArgs e)
         {
             double waist = UpDownGirthWaist.Value ?? 0; // талия
@@ -173,6 +183,34 @@ namespace VIO
 
             string bodyType = DetermineBodyType(waist, hips, bust);
             DisplayBodyTypeImage(bodyType);
+        }
+
+        // получение плана питания, открытие окна с предпочтениями
+        private void buttonPlan_Click(object sender, RoutedEventArgs e)
+        {
+            NotificationPopup.IsOpen = true;
+        }
+
+        // вывод предпочтений (вместо этого будем создавать план на основе предпочтений)
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedOption = "Ни один вариант не выбран";
+
+            if (RBVegetarian.IsChecked == true)
+            {
+                selectedOption = "Вегетарианец";
+            }
+            else if (RBVegan.IsChecked == true)
+            {
+                selectedOption = "Веган";
+            }
+            else if (RBStandart.IsChecked == true)
+            {
+                selectedOption = "Стандартный";
+            }
+
+            MessageBox.Show($"Вы выбрали: {selectedOption}");
+            NotificationPopup.IsOpen = false;
         }
     }
 }

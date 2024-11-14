@@ -99,7 +99,7 @@
                     <Label x:Name="labelWaterNumber" Content="0" HorizontalAlignment="Left" Margin="2,215,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="88" Grid.Column="1"/>
                     <Button x:Name="buttonPlan" Content="{DynamicResource MealPlan}" HorizontalAlignment="Left" Margin="180,253,0,0" VerticalAlignment="Top" 
-                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30"/>
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Click="buttonPlan_Click"/>
                     <Label x:Name="labelActivity" Content="{DynamicResource PhysicalActivity}" HorizontalAlignment="Left" Margin="104,101,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="217" Grid.Column="1"/>
                     <Slider x:Name="sliderActivity" Grid.Column="1" Minimum="1" Maximum="3" HorizontalAlignment="Left" Margin="104,139,0,0" 
@@ -114,6 +114,18 @@
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
                     <Label x:Name="labelActivityLevelHigh" Content="{DynamicResource ActivityLevelHigh}" HorizontalAlignment="Left" Margin="103,220,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
+                    <Popup x:Name="NotificationPopup" Placement="Center" StaysOpen="False">
+                        <Border Background="White" BorderBrush="#AC3B61" BorderThickness="1" Padding="10">
+                            <StackPanel>
+                                <TextBlock x:Name="TextBlockPreferences" Text="{DynamicResource FoodPreferences}" Margin="10" FontFamily="Cooper Black" Foreground="#123C69"/>
+                                <RadioButton x:Name="RBVegetarian" GroupName="Options" Content="{DynamicResource Vegetarian}" Margin="5" FontFamily="Cooper Black" Foreground="#123C69"/>
+                                <RadioButton x:Name="RBVegan" GroupName="Options" Content="{DynamicResource Vegan}" Margin="5" FontFamily="Cooper Black" Foreground="#123C69"/>
+                                <RadioButton x:Name="RBStandart" GroupName="Options" Content="{DynamicResource Standart}" Margin="5" FontFamily="Cooper Black" Foreground="#123C69"/>
+                                <Button Content="OK" Background="#FFEDC7B7" BorderBrush="#AC3B61" FontFamily="Cooper Black" Foreground="#AC3B61" HorizontalAlignment="Center" 
+                                        Margin="10" Click="OKButton_Click" Width="40"/>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
                 </Grid>
             </TabItem>
         </TabControl>

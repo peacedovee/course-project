@@ -36,8 +36,9 @@
     <sys:String x:Key="PhysicalActivity">Уровнь физ. активности</sys:String>
     <sys:String x:Key="MealPlan">Получить план питания</sys:String>
     <sys:String x:Key="Workout">Получить тренировку</sys:String>
-    <sys:String x:Key="Vegetarian">Вегетарианский</sys:String>
-    <sys:String x:Key="Vegan">Веганский</sys:String>
+    <sys:String x:Key="FoodPreferences">Выберите предпочтения</sys:String>
+    <sys:String x:Key="Vegetarian">Вегетарианец</sys:String>
+    <sys:String x:Key="Vegan">Веган</sys:String>
     <sys:String x:Key="Standart">Стандартный</sys:String>
     <sys:String x:Key="GainWeight">Набрать вес</sys:String>
     <sys:String x:Key="LoseWeight">Сбросить вес</sys:String>
@@ -81,6 +82,7 @@
     <sys:String x:Key="PhysicalActivity_en">Physical activity</sys:String>
     <sys:String x:Key="MealPlan_en">Get a meal plan</sys:String>
     <sys:String x:Key="Workout_en">Get a workout</sys:String>
+    <sys:String x:Key="FoodPreferences_en">Select your preferences</sys:String>
     <sys:String x:Key="Vegetarian_en">Vegetarian</sys:String>
     <sys:String x:Key="Vegan_en">Vegan</sys:String>
     <sys:String x:Key="Standart_en">Standart</sys:String>
