@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VIO;
 
 namespace VIO
 {
@@ -20,11 +21,46 @@ namespace VIO
     /// </summary>
     public partial class WindowParameters : Window
     {
+        private const string IniFilePath = "settings.ini"; 
+        private IniFile iniFile;
+
         public WindowParameters(string initialLanguage)
         {
             InitializeComponent();
             MainWindow.LanguageChanged += OnLanguageChanged;
             ChangeLanguage(initialLanguage);
+
+            iniFile = new IniFile(IniFilePath);
+            this.Loaded += WindowParameters_Loaded;
+            this.Closing += WindowParameters_Closing;
+        }
+
+        private void WindowParameters_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadSettings();
+        }
+
+        private void WindowParameters_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+            iniFile.Write("Parameters", "Height", UpDownHight.Value.ToString());
+            iniFile.Write("Parameters", "Hips", UpDownGirthHips.Value.ToString());
+            iniFile.Write("Parameters", "Waist", UpDownGirthWaist.Value.ToString());
+            iniFile.Write("Parameters", "Breast", UpDownGirthBreast.Value.ToString());
+            iniFile.Write("Parameters", "Weight", UpDownGirthWeight.Value.ToString());
+        }
+
+        private void LoadSettings()
+        {
+            UpDownHight.Value = int.TryParse(iniFile.Read("Parameters", "Height"), out int height) ? height : 10;
+            UpDownGirthHips.Value = int.TryParse(iniFile.Read("Parameters", "Hips"), out int hips) ? hips : 10;
+            UpDownGirthWaist.Value = int.TryParse(iniFile.Read("Parameters", "Waist"), out int waist) ? waist : 10;
+            UpDownGirthBreast.Value = int.TryParse(iniFile.Read("Parameters", "Breast"), out int breast) ? breast : 10;
+            UpDownGirthWeight.Value = int.TryParse(iniFile.Read("Parameters", "Weight"), out int weight) ? weight : 10;
         }
 
         private void OnLanguageChanged(string lang)
@@ -82,6 +118,61 @@ namespace VIO
             labelActivityLevelMedium.Content = Application.Current.Resources["ActivityLevelMedium"];
             labelActivityLevelHigh.Content = Application.Current.Resources["ActivityLevelHigh"];
 
+        }
+
+        private string DetermineBodyType(double waist, double hips, double bust)
+        {
+            if (hips > bust && hips > waist)
+            {
+                return "Pear_w"; // Треугольник
+            }
+            else if (bust > hips && bust > waist)
+            {
+                return "InvertedTriangle_w"; // Перевернутый треугольник
+            }
+            else if (bust == hips && waist == bust)
+            {
+                return "Rectangle_w"; // Прямоугольник
+            }
+            else if (bust == hips && waist < bust)
+            {
+                return "Hourglass_w"; // Песочные часы
+            }
+            else if (waist > bust && waist > hips)
+            {
+                return "Round_w"; // Круг
+            }
+            else
+            {
+                return "Square"; // Квадрат
+            }
+        }
+
+        private void DisplayBodyTypeImage(string bodyType)
+        {
+            try
+            {
+                string imagePath = $"pictures/{bodyType}.png";
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(imagePath, UriKind.Relative);
+                bitmap.EndInit();
+                BodyTypeImage.Source = bitmap;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading image: {ex.Message}");
+            }
+        }
+
+        private void buttonRecord_Click(object sender, RoutedEventArgs e)
+        {
+            double waist = UpDownGirthWaist.Value ?? 0; // талия
+            double hips = UpDownGirthHips.Value ?? 0; // грудь
+            double bust = UpDownGirthBreast.Value ?? 0; // бёдра
+
+            string bodyType = DetermineBodyType(waist, hips, bust);
+            DisplayBodyTypeImage(bodyType);
         }
     }
 }

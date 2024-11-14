@@ -43,7 +43,7 @@
                     <Label x:Name="labelGirthBreast" Grid.Column="0" Content="{DynamicResource GirthBreast}" HorizontalAlignment="Left" Margin="185,275,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
                     <Button x:Name="buttonRecord" Grid.Column="1" Content="{DynamicResource Record}" HorizontalAlignment="Center" Margin="20,315,0,0" VerticalAlignment="Top" 
-                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="152" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30"/>
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="152" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="buttonRecord_Click"/>
                     <xctk:IntegerUpDown x:Name="UpDownHight" Height="25" Width="153" Grid.Column="1" Margin="20,115,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="140" Maximum="250" Value="140"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -70,7 +70,10 @@
                     </Grid.ColumnDefinitions>
                     <Label x:Name="labelPlan" Grid.Column="0" Content="{DynamicResource IndividualPlan}" HorizontalAlignment="Left" Margin="300,50,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="221" Grid.ColumnSpan="2"/>
-                    <Image HorizontalAlignment="Left" Height="233" Margin="28,87,0,0" VerticalAlignment="Top" Width="130"/>
+                    <StackPanel>
+                        <Image x:Name="BodyTypeImage" HorizontalAlignment="Left" Height="233" Margin="28,87,0,0" VerticalAlignment="Top" Width="130"
+                               Stretch="Uniform"/>
+                    </StackPanel>
                     <Label x:Name="labelType" Content="{DynamicResource Type}" HorizontalAlignment="Left" Margin="28,337,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="166"/>
                     <Label x:Name="labelGoal" Content="{DynamicResource Purpose}" HorizontalAlignment="Left" Margin="174,139,0,0" VerticalAlignment="Top"
