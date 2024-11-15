@@ -10,7 +10,17 @@
 
   <ItemGroup>
     <None Remove="Hourglass_w.png" />
+    <None Remove="pictures\Hourglass_m.png" />
+    <None Remove="pictures\Hourglass_w.png" />
     <None Remove="pictures\iconVIO.ico" />
+    <None Remove="pictures\InvertedTriangle_m.png" />
+    <None Remove="pictures\InvertedTriangle_w.png" />
+    <None Remove="pictures\Pear_m.png" />
+    <None Remove="pictures\Pear_w.png" />
+    <None Remove="pictures\Rectangle_m.png" />
+    <None Remove="pictures\Rectangle_w.png" />
+    <None Remove="pictures\Round_m.png" />
+    <None Remove="pictures\Round_w.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,12 +28,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <DesignDataWithDesignTimeCreatableTypes Include="pictures\Round_w.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Hourglass_w.png" />
+    <Resource Include="pictures\Hourglass_w.png" />
+    <Resource Include="pictures\Hourglass_m.png" />
     <Resource Include="pictures\iconVIO.ico" />
+    <Resource Include="pictures\InvertedTriangle_m.png" />
+    <Resource Include="pictures\InvertedTriangle_w.png" />
+    <Resource Include="pictures\Pear_m.png" />
+    <Resource Include="pictures\Pear_w.png" />
+    <Resource Include="pictures\Rectangle_m.png" />
+    <Resource Include="pictures\Rectangle_w.png" />
+    <Resource Include="pictures\Round_m.png" />
     <Resource Include="ResourceDictionary.xaml" />
   </ItemGroup>
 

@@ -47,6 +47,13 @@
     <sys:String x:Key="ActivityLevelMedium">2. Средний</sys:String>
     <sys:String x:Key="ActivityLevelHigh">3. Высокий</sys:String>
 
+    <sys:String x:Key="PictureInvertedTriangle">Перевёрнутый треугольник</sys:String>
+    <sys:String x:Key="PicturePear">Груша (треугольник)</sys:String>
+    <sys:String x:Key="PictureRectangle">Прямоугольник</sys:String>
+    <sys:String x:Key="PictureHourglass">Песочные часы</sys:String>
+    <sys:String x:Key="PictureRound">Круг</sys:String>
+    <sys:String x:Key="PictureNone">Нестандартный</sys:String>
+
     <!-- Английские строки -->
     <sys:String x:Key="Welcome_en">Welcome!</sys:String>
     <sys:String x:Key="Login_en">Login</sys:String>
@@ -92,5 +99,12 @@
     <sys:String x:Key="ActivityLevelLow_en">1. Low</sys:String>
     <sys:String x:Key="ActivityLevelMedium_en">2. Medium</sys:String>
     <sys:String x:Key="ActivityLevelHigh_en">3. High</sys:String>
+
+    <sys:String x:Key="PictureInvertedTriangle_en">Inverted Triangle</sys:String>
+    <sys:String x:Key="PicturePear_en">Pear</sys:String>
+    <sys:String x:Key="PictureRectangle_en">Rectangle</sys:String>
+    <sys:String x:Key="PictureHourglass_en">Hourglass</sys:String>
+    <sys:String x:Key="PictureRound_en">Round</sys:String>
+    <sys:String x:Key="PictureNone_en">Non-Standart</sys:String>
 
 </ResourceDictionary>

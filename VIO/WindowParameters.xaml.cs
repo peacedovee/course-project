@@ -111,15 +111,18 @@ namespace VIO
             labelCalories.Content = Application.Current.Resources["Calories"];
             labelWater.Content = Application.Current.Resources["Water"];
             labelGoal.Content = Application.Current.Resources["Purpose"];
-            ComboBoxGainWeight.Content = Application.Current.Resources["GainWeight"];
-            ComboBoxLoseWeight.Content = Application.Current.Resources["LoseWeight"];
-            ComboBoxMaintainWeight.Content = Application.Current.Resources["MaintainWeight"];
-            buttonPlan.Content = Application.Current.Resources["MealPlan"];
             labelActivity.Content = Application.Current.Resources["PhysicalActivity"];
-            buttonWorkout.Content = Application.Current.Resources["Workout"];
             labelActivityLevelLow.Content = Application.Current.Resources["ActivityLevelLow"];
             labelActivityLevelMedium.Content = Application.Current.Resources["ActivityLevelMedium"];
             labelActivityLevelHigh.Content = Application.Current.Resources["ActivityLevelHigh"];
+
+            ComboBoxGainWeight.Content = Application.Current.Resources["GainWeight"];
+            ComboBoxLoseWeight.Content = Application.Current.Resources["LoseWeight"];
+            ComboBoxMaintainWeight.Content = Application.Current.Resources["MaintainWeight"];
+
+            buttonPlan.Content = Application.Current.Resources["MealPlan"];
+            buttonWorkout.Content = Application.Current.Resources["Workout"];
+
             TextBlockPreferences.Text = (string)Application.Current.Resources["FoodPreferences"];
             RBVegetarian.Content = Application.Current.Resources["Vegetarian"];
             RBVegan.Content = Application.Current.Resources["Vegan"];
@@ -131,11 +134,11 @@ namespace VIO
         {
             if (hips > bust && hips > waist)
             {
-                return "Pear_w"; // Треугольник
+                return "InvertedTriangle_w"; // Перевернутый треугольник
             }
             else if (bust > hips && bust > waist)
             {
-                return "InvertedTriangle_w"; // Перевернутый треугольник
+                return "Pear_w"; // Треугольник
             }
             else if (bust == hips && waist == bust)
             {
@@ -155,7 +158,7 @@ namespace VIO
             }
         }
 
-        // вывод изображения с типом фигуры
+        // вывод изображения с типом фигуры (нужно добавить изменение в зависимости от пола)
         private void DisplayBodyTypeImage(string bodyType)
         {
             try
@@ -174,8 +177,24 @@ namespace VIO
             }
         }
 
-        // кнопка записи в базу данных (пока что в ней код для вывода изображения, он не работает, пусть повисит)
+        // кнопка записи в базу данных (тут пока код для определения картинки)
         private void buttonRecord_Click(object sender, RoutedEventArgs e)
+        {
+            double waist = UpDownGirthWaist.Value ?? 0; // талия
+            double hips = UpDownGirthHips.Value ?? 0; // грудь
+            double bust = UpDownGirthBreast.Value ?? 0; // бёдра
+
+            string bodyType = DetermineBodyType(waist, hips, bust);
+            DisplayBodyTypeImage(bodyType);
+        }
+
+        // изменение картинки с типом фигуры
+        private void IntegerUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            //UpdatePicture();
+        }
+
+        private void UpdatePicture()
         {
             double waist = UpDownGirthWaist.Value ?? 0; // талия
             double hips = UpDownGirthHips.Value ?? 0; // грудь
