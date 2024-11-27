@@ -49,20 +49,21 @@
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <xctk:IntegerUpDown x:Name="UpDownGirthHips" Height="25" Width="153" Grid.Column="1" Margin="20,195,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
-                                        HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="IntegerUpDown_ValueChanged"/>
+                                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <xctk:IntegerUpDown x:Name="UpDownGirthWaist" Height="25" Width="153" Grid.Column="1" Margin="20,235,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
-                                        HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="IntegerUpDown_ValueChanged"/>
+                                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <xctk:IntegerUpDown x:Name="UpDownGirthBreast" Height="25" Width="153" Grid.Column="1" Margin="20,275,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
-                                        HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="IntegerUpDown_ValueChanged"/>
+                                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <xctk:DoubleUpDown x:Name="UpDownGirthWeight" Height="25" Width="153" Grid.Column="1" Margin="20,155,0,0"
                                        FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="40.00" Maximum="200.00" 
                                        Value="40.00" Increment="0.01" FormatString="F2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabResults" Header="{DynamicResource TabResults}">
+            <TabItem x:Name="tabResults" Header="{DynamicResource TabResults}" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top"
+                     Loaded="tabResults_Loaded">
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="406"/>
@@ -81,7 +82,7 @@
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" 
                         Margin="246,139,0,0" Width="193"
                         FontFamily="Cooper Black" FontSize="15" 
-                        Background="#EEE2DC" Foreground="#123C69">
+                        Background="#EEE2DC" Foreground="#123C69" SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBoxItem x:Name="ComboBoxGainWeight" Content="{DynamicResource GainWeight}" />
                         <ComboBoxItem x:Name="ComboBoxLoseWeight" Content="{DynamicResource LoseWeight}" />
                         <ComboBoxItem x:Name="ComboBoxMaintainWeight" Content="{DynamicResource MaintainWeight}" />

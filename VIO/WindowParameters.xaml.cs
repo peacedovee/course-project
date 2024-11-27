@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using VIO;
 
 namespace VIO
 {
@@ -21,8 +9,16 @@ namespace VIO
     /// </summary>
     public partial class WindowParameters : Window
     {
+        Calculation calculation;
         private const string IniFilePath = "settings.ini"; 
         private IniFile iniFile;
+        double height;
+        double weight;
+        double waist;
+        double hips;
+        double bust;
+        int age;
+        int coef;
 
         public WindowParameters(string initialLanguage)
         {
@@ -177,21 +173,10 @@ namespace VIO
             }
         }
 
-        // кнопка записи в базу данных (тут пока код для определения картинки)
+        // кнопка сохранения в базу данных
         private void buttonRecord_Click(object sender, RoutedEventArgs e)
         {
-            double waist = UpDownGirthWaist.Value ?? 0; // талия
-            double hips = UpDownGirthHips.Value ?? 0; // грудь
-            double bust = UpDownGirthBreast.Value ?? 0; // бёдра
-
-            string bodyType = DetermineBodyType(waist, hips, bust);
-            DisplayBodyTypeImage(bodyType);
-        }
-
-        // изменение картинки с типом фигуры
-        private void IntegerUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            //UpdatePicture();
+            
         }
 
         private void UpdatePicture()
@@ -207,6 +192,12 @@ namespace VIO
         // получение плана питания, открытие окна с предпочтениями
         private void buttonPlan_Click(object sender, RoutedEventArgs e)
         {
+            double bmi = 0;
+            double height = UpDownHight.Value ?? 0; // рост
+            double weight = UpDownGirthWeight.Value ?? 0; // вес
+            calculation = new Calculation(height,weight,age,coef);
+            bmi = calculation.CalculationBmi();
+            labelBMINumber.Content = bmi.ToString("F2");
             NotificationPopup.IsOpen = true;
         }
 
@@ -230,6 +221,18 @@ namespace VIO
 
             MessageBox.Show($"Вы выбрали: {selectedOption}");
             NotificationPopup.IsOpen = false;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void tabResults_Loaded(object sender, RoutedEventArgs e)
+        {
+            // вывод картинки с типом фигуры
+            // нужно добавить обновление при изменении апдаунов
+            UpdatePicture();
         }
     }
 }

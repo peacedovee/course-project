@@ -21,6 +21,11 @@ namespace VIO
     /// </summary>
     public partial class WindowRegistration : Window
     {
+        DatabaseManager database;
+        AccountManager accountManager;
+
+        string login;
+        string password;
         public WindowRegistration(string initialLanguage)
         {
             InitializeComponent();
@@ -85,9 +90,24 @@ namespace VIO
             this.Close();
         }
 
+        // PasswordBox ёу
         private void buttonRegisrtation_Click(object sender, RoutedEventArgs e)
         {
+            login = textBoxLogin.Text;
+            password = textBoxPassword.Text;
 
+            accountManager = new AccountManager(login,password);
+            //database = new DatabaseManager();
+
+            int result = accountManager.Registration();
+            if (result == 1)
+            {
+                MessageBox.Show("Ура");
+            }
+            else if (result == 2)
+            {
+                MessageBox.Show("Такой логин уже есть");
+            }
         }
     }
 }

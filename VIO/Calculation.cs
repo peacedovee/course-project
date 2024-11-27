@@ -1,17 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Media3D;
 
 namespace VIO
 {
-    internal class BMI
+    //public interface ICalculation // Объявление интерфейса
+    //{
+    //    //double CalculationBmi();
+    //}
+    internal class Calculation// : ICalculation
     {
-        private double CalculateBMI(int h, double weight)
+        double height; 
+        double weight;
+        int age;
+        int coef;
+        public Calculation(double height, double weight, int age, int coef)
         {
-            int hight = h / 100;
-            double bmi = weight / Math.Pow(hight, 2);
+            this.height = height;
+            this.weight = weight;
+            this.age = age;
+            this.coef = coef;
+        }
+
+        public double CalculationBmi()
+        {
+            double bmi = weight / Math.Pow(height, 2) * 10000;
 
             return bmi;
         }
@@ -20,12 +38,22 @@ namespace VIO
         {
             string verdict = "";
 
-            if (age >= 18 && age <= 24 )
+            if (age >= 18 && age <= 24)
             {
 
             }
 
             return verdict;
+        }
+
+        private double IdealWeight()
+        {
+            double idealWeight = 0;
+
+            idealWeight = (height - 100 + (age / 10)) * 0.9 * coef; 
+            //Идеальный вес = (рост(см) – 100 + (возраст / 10)) х 0.9 х коэффициент запястья
+
+            return idealWeight;
         }
 
         /* Категории ИМТ

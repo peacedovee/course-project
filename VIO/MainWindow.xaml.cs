@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace VIO
 {
@@ -17,6 +18,11 @@ namespace VIO
     /// </summary>
     public partial class MainWindow : Window
     {
+        AccountManager accountManager;
+        DatabaseManager database;
+
+        string login;
+        string password;
         public MainWindow()
         {
             InitializeComponent();
@@ -73,9 +79,31 @@ namespace VIO
 
         private void buttonEntrance_Click(object sender, RoutedEventArgs e)
         {
-            var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
-            var windowParameters = new WindowParameters(selectedLanguage);
-            windowParameters.ShowDialog();
+            login = textBoxLogin.Text;
+            password = passwordBox.Password;
+
+            accountManager = new AccountManager(login, password);
+            //database = new DatabaseManager(login,password);
+
+            int proverka = accountManager.Authorization();
+
+            if (proverka == 1)
+            {
+                var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
+                var windowParameters = new WindowParameters(selectedLanguage);
+                windowParameters.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("О ноооууу");
+            }
+
+            
+        }
+
+        private void textBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
