@@ -16,9 +16,9 @@
                         <ColumnDefinition Width="Auto" MinWidth="406"/>
                         <ColumnDefinition Width="Auto" MinWidth="177"/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="labelDate" Grid.Column="0" Content="{DynamicResource RecordingDate}" HorizontalAlignment="Left" Margin="185,75,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelDate" Grid.Column="0" Content="{DynamicResource RecordingDate}" HorizontalAlignment="Left" Margin="185,61,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="20,75,0,0" VerticalAlignment="Top" Language="en-US"
+                    <DatePicker HorizontalAlignment="Left" Margin="20,61,0,0" VerticalAlignment="Top" Language="en-US"
                         FontFamily="Cooper Black" FontSize="17" Background="#EEE2DC" Foreground="#123C69" Width="152" Grid.Column="1">
                         <DatePicker.Resources>
                             <Style TargetType="{x:Type DatePickerTextBox}">
@@ -32,38 +32,46 @@
                             </Style>
                         </DatePicker.Resources>
                     </DatePicker>
-                    <Label x:Name="labelHight" Grid.Column="0" Content="{DynamicResource Hight}" HorizontalAlignment="Left" Margin="185,115,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelHight" Grid.Column="0" Content="{DynamicResource Hight}" HorizontalAlignment="Left" Margin="185,101,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <Label x:Name="labelWeight" Grid.Column="0" Content="{DynamicResource Weight}" HorizontalAlignment="Left" Margin="185,155,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelWeight" Grid.Column="0" Content="{DynamicResource Weight}" HorizontalAlignment="Left" Margin="185,141,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <Label x:Name="labelGirthHips" Grid.Column="0" Content="{DynamicResource GirthHips}" HorizontalAlignment="Left" Margin="185,195,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelWrist" Grid.Column="0" Content="{DynamicResource Wrist}" HorizontalAlignment="Left" Margin="185,181,0,0" VerticalAlignment="Top" 
+                           FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
+                    <Label x:Name="labelGirthHips" Grid.Column="0" Content="{DynamicResource GirthHips}" HorizontalAlignment="Left" Margin="185,221,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <Label x:Name="labelGirthWaist" Grid.Column="0" Content="{DynamicResource GirthWaist}" HorizontalAlignment="Left" Margin="185,235,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelGirthWaist" Grid.Column="0" Content="{DynamicResource GirthWaist}" HorizontalAlignment="Left" Margin="185,261,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <Label x:Name="labelGirthBreast" Grid.Column="0" Content="{DynamicResource GirthBreast}" HorizontalAlignment="Left" Margin="185,275,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelGirthBreast" Grid.Column="0" Content="{DynamicResource GirthBreast}" HorizontalAlignment="Left" Margin="185,301,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <Button x:Name="buttonRecord" Grid.Column="1" Content="{DynamicResource Record}" HorizontalAlignment="Center" Margin="20,315,0,0" VerticalAlignment="Top" 
+                    <Button x:Name="buttonRecord" Grid.Column="1" Content="{DynamicResource Record}" HorizontalAlignment="Left" Margin="22,341,0,0" VerticalAlignment="Top" 
                         Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="152" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="buttonRecord_Click"/>
-                    <xctk:IntegerUpDown x:Name="UpDownHight" Height="25" Width="153" Grid.Column="1" Margin="20,115,0,0"
+                    <xctk:IntegerUpDown x:Name="UpDownHight" Height="25" Width="153" Grid.Column="1" Margin="20,101,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="140" Maximum="250" Value="140"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown x:Name="UpDownGirthHips" Height="25" Width="153" Grid.Column="1" Margin="20,195,0,0"
+                    <xctk:IntegerUpDown x:Name="UpDownGirthHips" Height="25" Width="153" Grid.Column="1" Margin="20,221,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown x:Name="UpDownGirthWaist" Height="25" Width="153" Grid.Column="1" Margin="20,235,0,0"
+                    <xctk:IntegerUpDown x:Name="UpDownGirthWaist" Height="25" Width="153" Grid.Column="1" Margin="20,261,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown x:Name="UpDownGirthBreast" Height="25" Width="153" Grid.Column="1" Margin="20,275,0,0"
+                    <xctk:IntegerUpDown x:Name="UpDownGirthBreast" Height="25" Width="153" Grid.Column="1" Margin="20,301,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <xctk:DoubleUpDown x:Name="UpDownGirthWeight" Height="25" Width="153" Grid.Column="1" Margin="20,155,0,0"
+                    <xctk:DoubleUpDown x:Name="UpDownGirthWeight" Height="25" Width="153" Grid.Column="1" Margin="20,141,0,0"
                                        FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="40.00" Maximum="200.00" 
                                        Value="40.00" Increment="0.01" FormatString="F2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboboxWrist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,181,0,0" 
+                              Width="153" FontFamily="Cooper Black" FontSize="16" Background="#EEE2DC" Foreground="#BAB2B5" Grid.Column="1">
+                        <ComboBoxItem x:Name="ComboBoxLess15" Content="&lt;15" />
+                        <ComboBoxItem x:Name="ComboBoxBetween" Content="15-17" />
+                        <ComboBoxItem x:Name="ComboBoxMore17" Content=">17" />
+                    </ComboBox>
 
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabResults" Header="{DynamicResource TabResults}" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top"
-                     Loaded="tabResults_Loaded">
+            <TabItem x:Name="tabResults" Header="{DynamicResource TabResults}" Height="22" Margin="-2,-2,0,0" VerticalAlignment="Top"
+                     Loaded="tabResults_Loaded" HorizontalAlignment="Left" Width="77">
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="406"/>
@@ -77,10 +85,10 @@
                     </StackPanel>
                     <Label x:Name="labelType" Content="{DynamicResource Type}" HorizontalAlignment="Left" Margin="28,337,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="166"/>
-                    <Label x:Name="labelGoal" Content="{DynamicResource Purpose}" HorizontalAlignment="Left" Margin="174,139,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelGoal" Content="{DynamicResource Purpose}" HorizontalAlignment="Left" Margin="174,177,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="72"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" 
-                        Margin="246,139,0,0" Width="193"
+                        Margin="246,177,0,0" Width="193"
                         FontFamily="Cooper Black" FontSize="15" 
                         Background="#EEE2DC" Foreground="#123C69" SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBoxItem x:Name="ComboBoxGainWeight" Content="{DynamicResource GainWeight}" />
@@ -89,17 +97,21 @@
                     </ComboBox>
                     <Label x:Name="labelBMI" Content="{DynamicResource BMI}" HorizontalAlignment="Left" Margin="174,101,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="179"/>
-                    <Label x:Name="labelCalories" Content="{DynamicResource Calories}" HorizontalAlignment="Left" Margin="174,177,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelIdealWeight" Content="{DynamicResource IdealWeight}" HorizontalAlignment="Left" Margin="174,139,0,0" VerticalAlignment="Top"
+                           FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="200"/>
+                    <Label x:Name="labelIdealWeightNumber" Content="0" HorizontalAlignment="Left" Margin="386,139,0,0" VerticalAlignment="Top" 
+                           FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="79" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelCalories" Content="{DynamicResource Calories}" HorizontalAlignment="Left" Margin="174,215,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="284" Grid.ColumnSpan="2"/>
-                    <Label x:Name="labelWater" Content="{DynamicResource Water}" HorizontalAlignment="Left" Margin="174,215,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelWater" Content="{DynamicResource Water}" HorizontalAlignment="Left" Margin="174,253,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="284" Grid.ColumnSpan="2"/>
-                    <Label x:Name="labelBMINumber" Content="0" HorizontalAlignment="Left" Margin="356,101,0,0" VerticalAlignment="Top"
-                        FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="79"/>
-                    <Label x:Name="labelCaloriesNumber" Content="0" HorizontalAlignment="Left" Margin="2,177,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelBMINumber" Content="0" HorizontalAlignment="Left" Margin="386,101,0,0" VerticalAlignment="Top"
+                        FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="79" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelCaloriesNumber" Content="0" HorizontalAlignment="Left" Margin="2,215,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="88" Grid.Column="1"/>
-                    <Label x:Name="labelWaterNumber" Content="0" HorizontalAlignment="Left" Margin="2,215,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelWaterNumber" Content="0" HorizontalAlignment="Left" Margin="2,253,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="88" Grid.Column="1"/>
-                    <Button x:Name="buttonPlan" Content="{DynamicResource MealPlan}" HorizontalAlignment="Left" Margin="180,253,0,0" VerticalAlignment="Top" 
+                    <Button x:Name="buttonPlan" Content="{DynamicResource MealPlan}" HorizontalAlignment="Left" Margin="180,291,0,0" VerticalAlignment="Top" 
                         Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Click="buttonPlan_Click"/>
                     <Label x:Name="labelActivity" Content="{DynamicResource PhysicalActivity}" HorizontalAlignment="Left" Margin="104,101,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="217" Grid.Column="1"/>
@@ -107,13 +119,13 @@
                             TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Top" Width="190" Height="15" />
                     <TextBlock x:Name="sliderValue" Text="{Binding ElementName=sliderActivity, Path=Value}" FontFamily="Cooper Black" FontSize="15"
                                Foreground="#AC3B61" HorizontalAlignment="Left" Margin="107,163,0,0" VerticalAlignment="Top" Width="190" Height="15" Grid.Column="1"/>
-                    <Button x:Name="buttonWorkout" Content="{DynamicResource Workout}" HorizontalAlignment="Left" Margin="104,253,0,0" VerticalAlignment="Top" 
-                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="193" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Grid.Column="1"/>
-                    <Label x:Name="labelActivityLevelLow" Content="{DynamicResource ActivityLevelLow}" HorizontalAlignment="Left" Margin="103,180,0,0" VerticalAlignment="Top"
+                    <Button x:Name="buttonWorkout" Content="{DynamicResource Workout}" HorizontalAlignment="Left" Margin="104,275,0,0" VerticalAlignment="Top" 
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="193" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Grid.Column="1" Click="buttonWorkout_Click"/>
+                    <Label x:Name="labelActivityLevelLow" Content="{DynamicResource ActivityLevelLow}" HorizontalAlignment="Left" Margin="103,182,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
-                    <Label x:Name="labelActivityLevelMedium" Content="{DynamicResource ActivityLevelMedium}" HorizontalAlignment="Left" Margin="103,200,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelActivityLevelMedium" Content="{DynamicResource ActivityLevelMedium}" HorizontalAlignment="Left" Margin="103,0,0,0" VerticalAlignment="Center"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
-                    <Label x:Name="labelActivityLevelHigh" Content="{DynamicResource ActivityLevelHigh}" HorizontalAlignment="Left" Margin="103,220,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelActivityLevelHigh" Content="{DynamicResource ActivityLevelHigh}" HorizontalAlignment="Left" Margin="103,222,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
                     <Popup x:Name="NotificationPopup" Placement="Center" StaysOpen="False">
                         <Border Background="White" BorderBrush="#AC3B61" BorderThickness="1" Padding="10">
@@ -127,6 +139,15 @@
                             </StackPanel>
                         </Border>
                     </Popup>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabChart" Header="{DynamicResource TabChart}" Height="22" Margin="-2,-2,0,0" VerticalAlignment="Top" 
+                     HorizontalAlignment="Left" Width="77">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="406"/>
+                        <ColumnDefinition Width="Auto" MinWidth="177"/>
+                    </Grid.ColumnDefinitions>
                 </Grid>
             </TabItem>
         </TabControl>

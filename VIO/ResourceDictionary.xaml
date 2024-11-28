@@ -17,11 +17,21 @@
     <sys:String x:Key="Female">Ж</sys:String>
     <sys:String x:Key="Male">М</sys:String>
 
+    <sys:String x:Key="LoginOrPasswordWrongMessage">Неверный логин или пароль</sys:String>
+    <sys:String x:Key="LoginMessage">Логин должен быть длиной от 4 до 12 символов</sys:String>
+    <sys:String x:Key="PasswordMessage">Пароль должен быть длиной от 4 до 8 символов</sys:String>
+    <sys:String x:Key="SuccessMessage">Ура</sys:String>
+    <sys:String x:Key="LoginExistsMessage">Такой логин уже есть</sys:String>
+    <sys:String x:Key="RegistrationErrorMessage">Произошла ошибка регистрации</sys:String>
+    <sys:String x:Key="EmptyFieldsMessage">Необходимо правильно заполнить все пустые поля</sys:String>
+
     <sys:String x:Key="TabParameters">Параметры</sys:String>
     <sys:String x:Key="TabResults">Результаты</sys:String>
+    <sys:String x:Key="TabChart">График</sys:String>
     <sys:String x:Key="RecordingDate">Дата создания записи</sys:String>
     <sys:String x:Key="Hight">Рост</sys:String>
     <sys:String x:Key="Weight">Вес</sys:String>
+    <sys:String x:Key="Wrist">Обхват запястья</sys:String>
     <sys:String x:Key="GirthWaist">Обхват талии</sys:String>
     <sys:String x:Key="GirthBreast">Обхват бёдер</sys:String>
     <sys:String x:Key="GirthHips">Обхват груди</sys:String>
@@ -30,6 +40,7 @@
     <sys:String x:Key="IndividualPlan">Индивидуальный план</sys:String>
     <sys:String x:Key="Type">Ваш тип фигуры</sys:String>
     <sys:String x:Key="BMI">Индекс массы тела</sys:String>
+    <sys:String x:Key="IdealWeight">Ваш идеальный вес (кг)</sys:String>
     <sys:String x:Key="Calories">Количество калорий на день</sys:String>
     <sys:String x:Key="Water">Количество воды на день(мл)</sys:String>
     <sys:String x:Key="Purpose">Цель</sys:String>
@@ -70,11 +81,21 @@
     <sys:String x:Key="Female_en">F</sys:String>
     <sys:String x:Key="Male_en">M</sys:String>
 
+    <sys:String x:Key="LoginOrPasswordWrongMessage_en">Invalid login or password</sys:String>
+    <sys:String x:Key="LoginMessage_en">The login must be between 4 and 12 characters long</sys:String>
+    <sys:String x:Key="PasswordMessage_en">The password must be between 4 and 8 characters long</sys:String>
+    <sys:String x:Key="SuccessMessage_en">Hooray</sys:String>
+    <sys:String x:Key="LoginExistsMessage_en">This login already exists</sys:String>
+    <sys:String x:Key="RegistrationErrorMessage_en">Registration error occurred</sys:String>
+    <sys:String x:Key="EmptyFieldsMessage_en">Please fill in all the empty fields correctly</sys:String>
+
     <sys:String x:Key="TabParameters_en">Parameters</sys:String>
     <sys:String x:Key="TabResults_en">Results</sys:String>
+    <sys:String x:Key="TabChart_en">Chart</sys:String>
     <sys:String x:Key="RecordingDate_en">Recording Date</sys:String>
     <sys:String x:Key="Hight_en">Hight</sys:String>
     <sys:String x:Key="Weight_en">Weight</sys:String>
+    <sys:String x:Key="Wrist_en">Wrist circumference</sys:String>
     <sys:String x:Key="GirthWaist_en">Girth Waist</sys:String>
     <sys:String x:Key="GirthBreast_en">Girth Breast</sys:String>
     <sys:String x:Key="GirthHips_en">Girth Hips</sys:String>
@@ -83,6 +104,7 @@
     <sys:String x:Key="IndividualPlan_en">Individual plan</sys:String>
     <sys:String x:Key="Type_en">Your type of figure</sys:String>
     <sys:String x:Key="BMI_en">Body mass index</sys:String>
+    <sys:String x:Key="IdealWeight_en">Your ideal weight (kg)</sys:String>
     <sys:String x:Key="Calories_en">The number of calories per day</sys:String>
     <sys:String x:Key="Water_en">The amount of water per day(ml)</sys:String>
     <sys:String x:Key="Purpose_en">Goal</sys:String>

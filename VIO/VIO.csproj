@@ -12,7 +12,9 @@
     <None Remove="Hourglass_w.png" />
     <None Remove="pictures\Hourglass_m.png" />
     <None Remove="pictures\Hourglass_w.png" />
+    <None Remove="pictures\icons_opened_eye.png" />
     <None Remove="pictures\iconVIO.ico" />
+    <None Remove="pictures\icon_closed_eye.png" />
     <None Remove="pictures\InvertedTriangle_m.png" />
     <None Remove="pictures\InvertedTriangle_w.png" />
     <None Remove="pictures\Pear_m.png" />
@@ -40,7 +42,13 @@
   <ItemGroup>
     <Resource Include="pictures\Hourglass_w.png" />
     <Resource Include="pictures\Hourglass_m.png" />
+    <Resource Include="pictures\icons_opened_eye.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="pictures\iconVIO.ico" />
+    <Resource Include="pictures\icon_closed_eye.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="pictures\InvertedTriangle_m.png" />
     <Resource Include="pictures\InvertedTriangle_w.png" />
     <Resource Include="pictures\Pear_m.png" />

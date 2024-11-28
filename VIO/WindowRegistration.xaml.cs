@@ -31,6 +31,33 @@ namespace VIO
             InitializeComponent();
             MainWindow.LanguageChanged += OnLanguageChanged;
             ChangeLanguage(initialLanguage);
+            InitializeVisibility();
+        }
+
+        private void InitializeVisibility()
+        {
+            passwordBox.Visibility = Visibility.Visible;
+            textBox.Visibility = Visibility.Collapsed;
+            ClosedEyeImage.Visibility = Visibility.Visible;
+            OpenedEyeImage.Visibility = Visibility.Collapsed;
+        }
+
+        private void ClosedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            textBox.Text = passwordBox.Password;
+            passwordBox.Visibility = Visibility.Collapsed;
+            textBox.Visibility = Visibility.Visible;
+            ClosedEyeImage.Visibility = Visibility.Collapsed;
+            OpenedEyeImage.Visibility = Visibility.Visible;
+        }
+
+        private void OpenedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            passwordBox.Password = textBox.Text;
+            textBox.Visibility = Visibility.Collapsed;
+            passwordBox.Visibility = Visibility.Visible;
+            OpenedEyeImage.Visibility = Visibility.Collapsed;
+            ClosedEyeImage.Visibility = Visibility.Visible;
         }
 
         private void OnLanguageChanged(string lang)
@@ -90,24 +117,59 @@ namespace VIO
             this.Close();
         }
 
-        // PasswordBox ёу
+        private bool AreFieldsValid()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxLogin.Text) ||
+                textBoxLogin.Text.Length < 4 || textBoxLogin.Text.Length > 12)
+            {
+                MessageBox.Show((string)Application.Current.Resources["LoginMessage"]);
+                return false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(passwordBox.Password) ||
+                passwordBox.Password.Length < 4 || passwordBox.Password.Length > 8)
+            {
+                MessageBox.Show((string)Application.Current.Resources["PasswordMessage"]);
+                return false;
+            }
+
+            return !string.IsNullOrWhiteSpace(textBoxName.Text) &&
+                   !string.IsNullOrWhiteSpace(DatePickerBirthday.Text) &&
+                   !string.IsNullOrWhiteSpace(comboboxGender.Text);
+        }
+
+
         private void buttonRegisrtation_Click(object sender, RoutedEventArgs e)
         {
             login = textBoxLogin.Text;
-            password = textBoxPassword.Text;
+            password = passwordBox.Password;
 
             accountManager = new AccountManager(login,password);
             //database = new DatabaseManager();
 
-            int result = accountManager.Registration();
-            if (result == 1)
+            if (AreFieldsValid())
             {
-                MessageBox.Show("Ура");
+                int result = accountManager.Registration();
+
+                switch (result)
+                {
+                    case 1:
+                        MessageBox.Show((string)Application.Current.Resources["SuccessMessage"]);
+                        this.Close();
+                        break;
+                    case 2:
+                        MessageBox.Show((string)Application.Current.Resources["LoginExistsMessage"]);
+                        break;
+                    default:
+                        MessageBox.Show((string)Application.Current.Resources["RegistrationErrorMessage"]);
+                        break;
+                }
             }
-            else if (result == 2)
+            else
             {
-                MessageBox.Show("Такой логин уже есть");
+                MessageBox.Show((string)Application.Current.Resources["EmptyFieldsMessage"]);
             }
         }
+
     }
 }

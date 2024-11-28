@@ -47,6 +47,7 @@ namespace VIO
             iniFile.Write("Parameters", "Height", UpDownHight.Value.ToString());
             iniFile.Write("Parameters", "Hips", UpDownGirthHips.Value.ToString());
             iniFile.Write("Parameters", "Waist", UpDownGirthWaist.Value.ToString());
+            iniFile.Write("Parameters", "Wrist", comboboxWrist.Text);
             iniFile.Write("Parameters", "Breast", UpDownGirthBreast.Value.ToString());
             iniFile.Write("Parameters", "Weight", UpDownGirthWeight.Value.ToString());
         }
@@ -57,9 +58,11 @@ namespace VIO
             UpDownHight.Value = int.TryParse(iniFile.Read("Parameters", "Height"), out int height) ? height : 10;
             UpDownGirthHips.Value = int.TryParse(iniFile.Read("Parameters", "Hips"), out int hips) ? hips : 10;
             UpDownGirthWaist.Value = int.TryParse(iniFile.Read("Parameters", "Waist"), out int waist) ? waist : 10;
+            comboboxWrist.Text = iniFile.Read("Parameters", "Wrist");
             UpDownGirthBreast.Value = int.TryParse(iniFile.Read("Parameters", "Breast"), out int breast) ? breast : 10;
             UpDownGirthWeight.Value = int.TryParse(iniFile.Read("Parameters", "Weight"), out int weight) ? weight : 10;
         }
+
 
         // изменение языка
         private void OnLanguageChanged(string lang)
@@ -93,9 +96,11 @@ namespace VIO
 
             tabParameters.Header = Application.Current.Resources["TabParameters"];
             tabResults.Header = Application.Current.Resources["TabResults"];
+            tabChart.Header = Application.Current.Resources["TabChart"];
             labelDate.Content = Application.Current.Resources["RecordingDate"];
             labelHight.Content = Application.Current.Resources["Hight"];
             labelWeight.Content = Application.Current.Resources["Weight"];
+            labelWrist.Content = Application.Current.Resources["Wrist"];
             labelGirthWaist.Content = Application.Current.Resources["GirthWaist"];
             labelGirthHips.Content = Application.Current.Resources["GirthHips"];
             labelGirthBreast.Content = Application.Current.Resources["GirthBreast"];
@@ -104,6 +109,7 @@ namespace VIO
             labelPlan.Content = Application.Current.Resources["IndividualPlan"];
             labelType.Content = Application.Current.Resources["Type"];
             labelBMI.Content = Application.Current.Resources["BMI"];
+            labelIdealWeight.Content = Application.Current.Resources["IdealWeight"];
             labelCalories.Content = Application.Current.Resources["Calories"];
             labelWater.Content = Application.Current.Resources["Water"];
             labelGoal.Content = Application.Current.Resources["Purpose"];
@@ -230,9 +236,46 @@ namespace VIO
 
         private void tabResults_Loaded(object sender, RoutedEventArgs e)
         {
-            // вывод картинки с типом фигуры
-            // нужно добавить обновление при изменении апдаунов
+            UpDownGirthWaist.ValueChanged += UpDown_ValueChanged;
+            UpDownGirthHips.ValueChanged += UpDown_ValueChanged;
+            UpDownGirthBreast.ValueChanged += UpDown_ValueChanged;
+
             UpdatePicture();
         }
+
+        private void UpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            UpdatePicture();
+        }
+
+
+        private void buttonWorkout_Click(object sender, RoutedEventArgs e)
+        {
+            int sliderValue = (int)sliderActivity.Value;
+            string url = "";
+
+            switch (sliderValue)
+            {
+                case 1: // URL для низкого уровня активности
+                    url = "https://www.youtube.com/watch?v=IbdS_z2Pu4c";
+                    break;
+                case 2: // URL для среднего уровня активности
+                    url = "https://www.youtube.com/watch?v=rb3-BMof2lg";
+                    break;
+                case 3: // URL для высокого уровня активности
+                    url = "https://www.youtube.com/watch?v=ESMmH-JfPCY";
+                    break;
+            }
+
+            if (!string.IsNullOrEmpty(url))
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+        }
+
     }
 }

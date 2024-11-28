@@ -26,6 +26,15 @@ namespace VIO
         public MainWindow()
         {
             InitializeComponent();
+            InitializeVisibility();
+        }
+
+        private void InitializeVisibility() 
+        { 
+            passwordBox.Visibility = Visibility.Visible; 
+            textBox.Visibility = Visibility.Collapsed; 
+            ClosedEyeImage.Visibility = Visibility.Visible; 
+            OpenedEyeImage.Visibility = Visibility.Collapsed; 
         }
 
         private void buttonRegistration_Click(object sender, RoutedEventArgs e)
@@ -95,10 +104,26 @@ namespace VIO
             }
             else
             {
-                MessageBox.Show("О ноооууу");
+                MessageBox.Show((string)Application.Current.Resources["LoginOrPasswordWrongMessage"]);
             }
+        }
 
-            
+        private void ClosedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            textBox.Text = passwordBox.Password;
+            passwordBox.Visibility = Visibility.Collapsed;
+            textBox.Visibility = Visibility.Visible;
+            ClosedEyeImage.Visibility = Visibility.Collapsed;
+            OpenedEyeImage.Visibility = Visibility.Visible;
+        }
+
+        private void OpenedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            passwordBox.Password = textBox.Text;
+            textBox.Visibility = Visibility.Collapsed;
+            passwordBox.Visibility = Visibility.Visible;
+            OpenedEyeImage.Visibility = Visibility.Collapsed;
+            ClosedEyeImage.Visibility = Visibility.Visible;
         }
 
         private void textBoxLogin_TextChanged(object sender, TextChangedEventArgs e)

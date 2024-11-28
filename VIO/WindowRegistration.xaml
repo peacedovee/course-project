@@ -11,14 +11,22 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="labelRegistration" Grid.Column="1" Content="{DynamicResource RegistrationWord}" HorizontalAlignment="Left" Margin="34,42,0,0" VerticalAlignment="Top"
+        <Label x:Name="labelRegistration" Grid.ColumnSpan="2" Content="{DynamicResource RegistrationWord}" HorizontalAlignment="Left" Margin="360,42,0,0" VerticalAlignment="Top"
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
         <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Margin="279,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
             Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" Grid.ColumnSpan="2"/>
         <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="279,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
             Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="textBoxPassword" HorizontalAlignment="Left" Margin="279,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
-            Width="304" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" Grid.ColumnSpan="2"/>
+        <PasswordBox x:Name="passwordBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="279,175,0,0" Foreground="#BAB2B5" 
+                     VerticalAlignment="Top" Width="304" Height="25" FontFamily="Cooper Black" FontSize="16" PasswordChar="*" />
+        <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="279,175,0,0" Foreground="#BAB2B5"
+                 VerticalAlignment="Top" Width="304" Height="25" FontFamily="Cooper Black" FontSize="16" Visibility="Collapsed" />
+        <Image x:Name="ClosedEyeImage" HorizontalAlignment="Left" Height="25" Width="25" 
+               Margin="590,175,0,0" VerticalAlignment="Top" Stretch="Uniform" Source="pictures/icon_closed_eye.png" 
+               MouseLeftButtonDown="ClosedEyeImage_MouseLeftButtonDown" Grid.ColumnSpan="2" />
+        <Image x:Name="OpenedEyeImage" HorizontalAlignment="Left" Height="25" Width="25" 
+               Margin="590,175,0,0" VerticalAlignment="Top" Stretch="Uniform" Source="pictures/icons_opened_eye.png"
+               MouseLeftButtonDown="OpenedEyeImage_MouseLeftButtonDown" Grid.ColumnSpan="2" Visibility="Collapsed" />
         <Button x:Name="buttonRegisrtation" Content="{DynamicResource RegistrationButton}" HorizontalAlignment="Left" Margin="279,272,0,0" VerticalAlignment="Top" 
             Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="304" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61"
             Height="30" Grid.ColumnSpan="2" Click="buttonRegisrtation_Click"/>
@@ -33,9 +41,9 @@
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
         <Label x:Name="labelPassword" Grid.Column="0" Content="{DynamicResource Password}" HorizontalAlignment="Left" Margin="128,175,0,0" VerticalAlignment="Top"
             FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
-        <Label x:Name="labelGender" Content="{DynamicResource Gender}" HorizontalAlignment="Left" Margin="109,210,0,0" VerticalAlignment="Top"
-            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Grid.Column="1"/>
-        <DatePicker HorizontalAlignment="Left" Margin="279,210,0,0" VerticalAlignment="Top" Language="en-US"
+        <Label x:Name="labelGender" Content="{DynamicResource Gender}" HorizontalAlignment="Left" Margin="435,210,0,0" VerticalAlignment="Top"
+            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Grid.ColumnSpan="2"/>
+        <DatePicker x:Name="DatePickerBirthday" HorizontalAlignment="Left" Margin="279,210,0,0" VerticalAlignment="Top" Language="en-US"
             FontFamily="Cooper Black" FontSize="17" Background="#EEE2DC" Foreground="#123C69" Width="152" Grid.ColumnSpan="2">
             <DatePicker.Resources>
                 <Style TargetType="{x:Type DatePickerTextBox}">
@@ -49,7 +57,7 @@
                 </Style>
             </DatePicker.Resources>
         </DatePicker>
-        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" 
+        <ComboBox x:Name="comboboxGender" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" 
           Margin="510,210,0,0" Width="70"
           FontFamily="Cooper Black" FontSize="17" 
           Background="#EEE2DC" Foreground="#123C69">

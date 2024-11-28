@@ -9,9 +9,9 @@
         Title="VIO" Height="450" Width="800" Icon="pictures\iconVIO.ico" Background="#EEE2DC">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="415">
         <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <Button x:Name="buttonEntrance" Grid.Column="1" Content="{DynamicResource Entrance}" HorizontalAlignment="Center" Margin="0,238,0,0" VerticalAlignment="Top" 
                 Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="242" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="buttonEntrance_Click"/>
         <Label x:Name="labelWelcome" Grid.Column="1" Content="{DynamicResource Welcome}" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top"
@@ -20,8 +20,16 @@
             Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="242" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="buttonRegistration_Click"/>
         <TextBox x:Name="textBoxLogin" Grid.Column="1" HorizontalAlignment="Center" Margin="0,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                  Width="242" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" TextChanged="textBoxLogin_TextChanged"/>
-        <PasswordBox x:Name="passwordBox" Grid.Column="1" HorizontalAlignment="Center" Margin="0,196,0,0" VerticalAlignment="Top" Width="242" Height="25" 
-                     FontFamily="Cooper Black" FontSize="16" PasswordChar="*"/>
+        <PasswordBox x:Name="passwordBox" Grid.Column="1" HorizontalAlignment="Center" Margin="0,196,0,0" Foreground="#BAB2B5"
+                     VerticalAlignment="Top" Width="242" Height="25" FontFamily="Cooper Black" FontSize="16" PasswordChar="*" />
+        <TextBox x:Name="textBox" Grid.Column="1" HorizontalAlignment="Center" Margin="0,196,0,0" Foreground="#BAB2B5"
+                 VerticalAlignment="Top" Width="242" Height="25" FontFamily="Cooper Black" FontSize="16" Visibility="Collapsed" />
+        <Image x:Name="ClosedEyeImage" HorizontalAlignment="Left" Height="25" Width="25" 
+               Margin="512,196,0,0" VerticalAlignment="Top" Stretch="Uniform" Source="pictures/icon_closed_eye.png" 
+               Grid.RowSpan="2" Grid.Column="1" MouseLeftButtonDown="ClosedEyeImage_MouseLeftButtonDown" />
+        <Image x:Name="OpenedEyeImage" HorizontalAlignment="Left" Height="25" Width="25" 
+               Margin="512,196,0,0" VerticalAlignment="Top" Stretch="Uniform" Source="pictures/icons_opened_eye.png" 
+               Grid.RowSpan="2" Grid.Column="1" Visibility="Collapsed" MouseLeftButtonDown="OpenedEyeImage_MouseLeftButtonDown" />
         <Label x:Name="labelLogin" Grid.Column="1" Content="{DynamicResource Login}" HorizontalAlignment="Left" Margin="168,155,0,0" VerticalAlignment="Top"
                FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
         <Label x:Name="labelPassword" Grid.Column="1" Content="{DynamicResource Password}" HorizontalAlignment="Left" Margin="168,194,0,0" VerticalAlignment="Top"
@@ -40,5 +48,5 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+
 </Window>
