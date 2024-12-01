@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -277,5 +278,9 @@ namespace VIO
             }
         }
 
+        private void tabParameters_Loaded(object sender, RoutedEventArgs e)
+        {
+            DatePickerRecording.SelectedDate = DateTime.Now;
+        }
     }
 }

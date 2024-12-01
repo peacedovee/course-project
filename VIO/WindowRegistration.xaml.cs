@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -119,15 +121,18 @@ namespace VIO
 
         private bool AreFieldsValid()
         {
+            string loginPattern = @"^[a-zA-Zа-яА-Я0-9]{4,12}$"; // Логин может содержать буквы (латиница и кириллица) и цифры, длина от 4 до 12 символов
+            string passwordPattern = @"^[a-zA-Zа-яА-Я0-9]{4,12}$"; // Пароль может содержать буквы (латиница и кириллица) и цифры, длина от 4 до 12 символов
+
             if (string.IsNullOrWhiteSpace(textBoxLogin.Text) ||
-                textBoxLogin.Text.Length < 4 || textBoxLogin.Text.Length > 12)
+                !Regex.IsMatch(textBoxLogin.Text, loginPattern))
             {
                 MessageBox.Show((string)Application.Current.Resources["LoginMessage"]);
                 return false;
             }
 
-            else if (string.IsNullOrWhiteSpace(passwordBox.Password) ||
-                passwordBox.Password.Length < 4 || passwordBox.Password.Length > 8)
+            if (string.IsNullOrWhiteSpace(passwordBox.Password) ||
+                !Regex.IsMatch(passwordBox.Password, passwordPattern))
             {
                 MessageBox.Show((string)Application.Current.Resources["PasswordMessage"]);
                 return false;
@@ -138,13 +143,12 @@ namespace VIO
                    !string.IsNullOrWhiteSpace(comboboxGender.Text);
         }
 
-
         private void buttonRegisrtation_Click(object sender, RoutedEventArgs e)
         {
             login = textBoxLogin.Text;
             password = passwordBox.Password;
 
-            accountManager = new AccountManager(login,password);
+            accountManager = new AccountManager(login, password);
             //database = new DatabaseManager();
 
             if (AreFieldsValid())

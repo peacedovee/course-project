@@ -10,7 +10,7 @@
         Title="VIO" Height="450" Width="800" Icon="pictures\iconVIO.ico" Background="#EEE2DC">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="410" Width="780">
         <TabControl x:Name="mainTabControl">
-            <TabItem x:Name="tabParameters" Header="{DynamicResource TabParameters}">
+            <TabItem x:Name="tabParameters" Header="{DynamicResource TabParameters}" Loaded="tabParameters_Loaded">
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="406"/>
@@ -18,7 +18,7 @@
                     </Grid.ColumnDefinitions>
                     <Label x:Name="labelDate" Grid.Column="0" Content="{DynamicResource RecordingDate}" HorizontalAlignment="Left" Margin="185,61,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="20,61,0,0" VerticalAlignment="Top" Language="en-US"
+                    <DatePicker x:Name="DatePickerRecording" HorizontalAlignment="Left" Margin="20,61,0,0" VerticalAlignment="Top" Language="en-US"
                         FontFamily="Cooper Black" FontSize="17" Background="#EEE2DC" Foreground="#123C69" Width="152" Grid.Column="1">
                         <DatePicker.Resources>
                             <Style TargetType="{x:Type DatePickerTextBox}">

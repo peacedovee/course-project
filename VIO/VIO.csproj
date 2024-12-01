@@ -23,6 +23,7 @@
     <None Remove="pictures\Rectangle_w.png" />
     <None Remove="pictures\Round_m.png" />
     <None Remove="pictures\Round_w.png" />
+    <None Remove="pictures\VIOlogo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +57,7 @@
     <Resource Include="pictures\Rectangle_m.png" />
     <Resource Include="pictures\Rectangle_w.png" />
     <Resource Include="pictures\Round_m.png" />
+    <Resource Include="pictures\VIOlogo.png" />
     <Resource Include="ResourceDictionary.xaml" />
   </ItemGroup>
 
