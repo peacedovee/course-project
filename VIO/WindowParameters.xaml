@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="VIO" Height="450" Width="800" Icon="pictures\iconVIO.ico" Background="#EEE2DC">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="410" Width="780">
-        <TabControl x:Name="mainTabControl">
+        <TabControl x:Name="mainTabControl" SelectionChanged="mainTabControl_SelectionChanged">
             <TabItem x:Name="tabParameters" Header="{DynamicResource TabParameters}" Loaded="tabParameters_Loaded">
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
                     <Grid.ColumnDefinitions>
@@ -45,7 +45,7 @@
                     <Label x:Name="labelGirthBreast" Grid.Column="0" Content="{DynamicResource GirthBreast}" HorizontalAlignment="Left" Margin="185,301,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
                     <Button x:Name="buttonRecord" Grid.Column="1" Content="{DynamicResource Record}" HorizontalAlignment="Left" Margin="22,341,0,0" VerticalAlignment="Top" 
-                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="152" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="buttonRecord_Click"/>
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="152" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="ButtonRecord_Click"/>
                     <xctk:IntegerUpDown x:Name="UpDownHight" Height="25" Width="153" Grid.Column="1" Margin="20,101,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="140" Maximum="250" Value="140"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -70,8 +70,8 @@
 
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabResults" Header="{DynamicResource TabResults}" Height="22" Margin="-2,-2,0,0" VerticalAlignment="Top"
-                     Loaded="tabResults_Loaded" HorizontalAlignment="Left" Width="77">
+            <TabItem x:Name="tabResults" Header="{DynamicResource TabResults}" Height="22" Margin="-2,-2,2,0" VerticalAlignment="Top"
+                     Loaded="tabResults_Loaded">
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="406"/>

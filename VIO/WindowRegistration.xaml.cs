@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using VIO;
 
 namespace VIO
@@ -143,17 +145,28 @@ namespace VIO
                    !string.IsNullOrWhiteSpace(comboboxGender.Text);
         }
 
+        private void initAccount(string login, string password)
+        {
+            accountManager = AccountManager.getInstance();
+            accountManager.SetUserCred(login, password);
+        }
+
         private void buttonRegisrtation_Click(object sender, RoutedEventArgs e)
         {
             login = textBoxLogin.Text;
             password = passwordBox.Password;
 
-            accountManager = new AccountManager(login, password);
+            string name = textBoxName.Text;
+            string birthday = DatePickerBirthday.Text;
+            int gender = comboboxGender.SelectedIndex;
+
+            initAccount(login, password);
+            //accountManager = AccountManager.getInstance();
             //database = new DatabaseManager();
 
             if (AreFieldsValid())
             {
-                int result = accountManager.Registration();
+                int result = accountManager.Registration(name, birthday, gender);
 
                 switch (result)
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,42 +16,69 @@ namespace VIO
     //}
     internal class Calculation// : ICalculation
     {
-        double height; 
-        double weight;
+        AccountManager accountManager;
+        DatabaseManager database;
+        int height;
+        float weight;
         int age;
-        int coef;
-        public Calculation(double height, double weight, int age, int coef)
-        {
-            this.height = height;
-            this.weight = weight;
-            this.age = age;
-            this.coef = coef;
-        }
+        float coef;
 
+        private void Data()
+        {
+            accountManager = AccountManager.getInstance();
+            (age, height, weight, coef) = accountManager.Calc();
+
+
+        }
+        //public Calculation(double height, double weight, int age, int coef)
+        //{
+        //    this.height = height;
+        //    this.weight = weight;
+        //    this.age = age;
+        //    this.coef = coef;
+        //}
+
+        //public void df ()
+        //{
+        //    string querySelect = "SELECT last_insert_rowid() FROM  Parameters WHERE IDUser = @IDUser";
+
+        //    using (SQLiteCommand selectCommand = new SQLiteCommand(querySelect, database.GetConnection()))
+        //    {
+        //        command.Parameters.AddWithValue("@IDUser", idEntrance);
+        //        //long lastID = (long)selectCommand.ExecuteScalar();
+        //        //idEntrance = (int)lastID;
+        //    }
+        //}
         public double CalculationBmi()
         {
+            Data();
             double bmi = weight / Math.Pow(height, 2) * 10000;
 
             return bmi;
         }
-
-        private string VerdictBMI(int age, double bmi)
+        public float CalculationCalories()
         {
-            string verdict = "";
+            float calories = 0;
 
-            if (age >= 18 && age <= 24)
-            {
+            calories = (float)((10 * weight) + (6.25 * height) - (5 * age) - 161);
 
-            }
-
-            return verdict;
+            return calories;
         }
 
-        private double IdealWeight()
+        public int CalculationWater()
         {
-            double idealWeight = 0;
+            int water = 0;
 
-            idealWeight = (height - 100 + (age / 10)) * 0.9 * coef; 
+            water = 30 * (int)weight;
+
+            return water;
+        }
+
+        public float IdealWeight()
+        {
+            float idealWeight = 0;
+
+            idealWeight = (float)((height - 100 + (age / 10)) * 0.9 * coef); 
             //Идеальный вес = (рост(см) – 100 + (возраст / 10)) х 0.9 х коэффициент запястья
 
             return idealWeight;

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 
 namespace VIO
 {
@@ -10,6 +11,7 @@ namespace VIO
     /// </summary>
     public partial class WindowParameters : Window
     {
+        AccountManager accountManager;
         Calculation calculation;
         private const string IniFilePath = "settings.ini"; 
         private IniFile iniFile;
@@ -181,16 +183,55 @@ namespace VIO
         }
 
         // кнопка сохранения в базу данных
-        private void buttonRecord_Click(object sender, RoutedEventArgs e)
+        private void ButtonRecord_Click(object sender, RoutedEventArgs e)
         {
-            
+            //accountManager = new AccountManager();
+
+            float coef = 0;
+            string recordingDate = DatePickerRecording.Text; // дата записи
+            int height = UpDownHight.Value ?? 0; // рост
+            double weight = UpDownGirthWeight.Value ?? 0; // вес
+            int wrist = comboboxWrist.SelectedIndex; // запястье
+            int waist = UpDownGirthWaist.Value ?? 0; // талия
+            int hips = UpDownGirthHips.Value ?? 0; // бёдра
+            int breast = UpDownGirthBreast.Value ?? 0; // грудь
+
+            if (wrist == 0)
+            {
+                coef = 0.9f;
+            }
+            else if (wrist == 1)
+            {
+                coef = 1;
+            }
+            else if (wrist == 2)
+            {
+                coef = 1.1f;
+            }
+
+            accountManager = AccountManager.getInstance();
+
+            int result = accountManager.UserParameters(recordingDate, height, (float)weight, coef, breast, waist, hips);
+
+            if (result == 0)
+            {
+                // Запись произошла успешно
+            }
+            if(result == 1)
+            {
+                // Запись на такую дату уже есть, данные были обновлены
+            }
+            if(result == 2)
+            {
+                //Ёмаё, кажись ошибка
+            }
         }
 
         private void UpdatePicture()
         {
             double waist = UpDownGirthWaist.Value ?? 0; // талия
-            double hips = UpDownGirthHips.Value ?? 0; // грудь
-            double bust = UpDownGirthBreast.Value ?? 0; // бёдра
+            double hips = UpDownGirthHips.Value ?? 0; // 
+            double bust = UpDownGirthBreast.Value ?? 0; // 
 
             string bodyType = DetermineBodyType(waist, hips, bust);
             DisplayBodyTypeImage(bodyType);
@@ -199,12 +240,6 @@ namespace VIO
         // получение плана питания, открытие окна с предпочтениями
         private void buttonPlan_Click(object sender, RoutedEventArgs e)
         {
-            double bmi = 0;
-            double height = UpDownHight.Value ?? 0; // рост
-            double weight = UpDownGirthWeight.Value ?? 0; // вес
-            calculation = new Calculation(height,weight,age,coef);
-            bmi = calculation.CalculationBmi();
-            labelBMINumber.Content = bmi.ToString("F2");
             NotificationPopup.IsOpen = true;
         }
 
@@ -281,6 +316,40 @@ namespace VIO
         private void tabParameters_Loaded(object sender, RoutedEventArgs e)
         {
             DatePickerRecording.SelectedDate = DateTime.Now;
+        }
+
+        private void mainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl)
+            {
+                TabItem selectedTab = (TabItem)mainTabControl.SelectedItem;
+            }
+
+            accountManager = AccountManager.getInstance();
+            int gender = accountManager.UserDataSelect();
+
+            double bmi = 0;
+            float calories = 0;
+            int water = 0;
+            float idealWeight = 0;
+
+            //double height = UpDownHight.Value ?? 0; // рост
+            //double weight = UpDownGirthWeight.Value ?? 0; // вес
+
+            calculation = new Calculation();
+            bmi = calculation.CalculationBmi();
+            labelBMINumber.Content = bmi.ToString("F2");
+
+            calories = calculation.CalculationCalories();
+            labelCaloriesNumber.Content = ((int)calories).ToString();
+
+            water = calculation.CalculationWater();
+            labelWaterNumber.Content = water.ToString();
+
+            idealWeight = calculation.IdealWeight();
+            labelIdealWeightNumber.Content = idealWeight.ToString("F2");
+
+
         }
     }
 }

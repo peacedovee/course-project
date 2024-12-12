@@ -86,17 +86,22 @@ namespace VIO
             buttonRegistration.Content = Application.Current.Resources["Registration"];
         }
 
+        private void initAccount(string login, string password)
+        {
+            accountManager = AccountManager.getInstance();
+            accountManager.SetUserCred(login, password);
+        }
         private void buttonEntrance_Click(object sender, RoutedEventArgs e)
         {
             login = textBoxLogin.Text;
             password = passwordBox.Password;
 
-            accountManager = new AccountManager(login, password);
-            //database = new DatabaseManager(login,password);
+            //accountManager = AccountManager.getInstance();
+            initAccount(login, password);
 
-            int proverka = accountManager.Authorization();
+            int proverka = accountManager.Authorization(); // Я ИЗМЕНИЛА ПРОВЕРКУ, ВОЗВРАЩЕТСЯ ID ПОЛЬЗОВАТЕЛЯ, Ю НОУ?
 
-            if (proverka == 1)
+            if (proverka > 0)
             {
                 var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
                 var windowParameters = new WindowParameters(selectedLanguage);
