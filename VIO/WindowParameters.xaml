@@ -32,30 +32,30 @@
                             </Style>
                         </DatePicker.Resources>
                     </DatePicker>
-                    <Label x:Name="labelHight" Grid.Column="0" Content="{DynamicResource Hight}" HorizontalAlignment="Left" Margin="185,101,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelHeight" Grid.Column="0" Content="{DynamicResource Height}" HorizontalAlignment="Left" Margin="185,101,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
                     <Label x:Name="labelWeight" Grid.Column="0" Content="{DynamicResource Weight}" HorizontalAlignment="Left" Margin="185,141,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
                     <Label x:Name="labelWrist" Grid.Column="0" Content="{DynamicResource Wrist}" HorizontalAlignment="Left" Margin="185,181,0,0" VerticalAlignment="Top" 
                            FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <Label x:Name="labelGirthHips" Grid.Column="0" Content="{DynamicResource GirthHips}" HorizontalAlignment="Left" Margin="185,221,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelGirthBreast" Grid.Column="0" Content="{DynamicResource GirthBreast}" HorizontalAlignment="Left" Margin="185,221,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
                     <Label x:Name="labelGirthWaist" Grid.Column="0" Content="{DynamicResource GirthWaist}" HorizontalAlignment="Left" Margin="185,261,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
-                    <Label x:Name="labelGirthBreast" Grid.Column="0" Content="{DynamicResource GirthBreast}" HorizontalAlignment="Left" Margin="185,301,0,0" VerticalAlignment="Top"
+                    <Label x:Name="labelGirthHips" Grid.Column="0" Content="{DynamicResource GirthHips}" HorizontalAlignment="Left" Margin="185,301,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="17" Foreground="#123C69" Height="29" Width="201"/>
                     <Button x:Name="buttonRecord" Grid.Column="1" Content="{DynamicResource Record}" HorizontalAlignment="Left" Margin="22,341,0,0" VerticalAlignment="Top" 
                         Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="152" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="ButtonRecord_Click"/>
-                    <xctk:IntegerUpDown x:Name="UpDownHight" Height="25" Width="153" Grid.Column="1" Margin="20,101,0,0"
+                    <xctk:IntegerUpDown x:Name="UpDownHeight" Height="25" Width="153" Grid.Column="1" Margin="20,101,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="140" Maximum="250" Value="140"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown x:Name="UpDownGirthHips" Height="25" Width="153" Grid.Column="1" Margin="20,221,0,0"
+                    <xctk:IntegerUpDown x:Name="UpDownGirthBreast" Height="25" Width="153" Grid.Column="1" Margin="20,221,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <xctk:IntegerUpDown x:Name="UpDownGirthWaist" Height="25" Width="153" Grid.Column="1" Margin="20,261,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown x:Name="UpDownGirthBreast" Height="25" Width="153" Grid.Column="1" Margin="20,301,0,0"
+                    <xctk:IntegerUpDown x:Name="UpDownGirthHips" Height="25" Width="153" Grid.Column="1" Margin="20,301,0,0"
                                         FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Minimum="10" Maximum="200" Value="10"
                                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <xctk:DoubleUpDown x:Name="UpDownGirthWeight" Height="25" Width="153" Grid.Column="1" Margin="20,141,0,0"
@@ -83,6 +83,8 @@
                         <Image x:Name="BodyTypeImage" HorizontalAlignment="Left" Height="233" Margin="28,87,0,0" VerticalAlignment="Top" Width="130"
                                Stretch="Uniform"/>
                     </StackPanel>
+                    <Image x:Name="NotificationImage" HorizontalAlignment="Left" Height="20" Margin="358,104,0,311" Width="20"
+                           Stretch="Uniform" Source="\pictures\notification.png" Visibility="Hidden" MouseDown="NotificationImage_MouseDown"/>
                     <Label x:Name="labelType" Content="{DynamicResource Type}" HorizontalAlignment="Left" Margin="28,337,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="166"/>
                     <Label x:Name="labelGoal" Content="{DynamicResource Purpose}" HorizontalAlignment="Left" Margin="174,177,0,0" VerticalAlignment="Top"
@@ -119,7 +121,7 @@
                             TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Top" Width="190" Height="15" />
                     <TextBlock x:Name="sliderValue" Text="{Binding ElementName=sliderActivity, Path=Value}" FontFamily="Cooper Black" FontSize="15"
                                Foreground="#AC3B61" HorizontalAlignment="Left" Margin="107,163,0,0" VerticalAlignment="Top" Width="190" Height="15" Grid.Column="1"/>
-                    <Button x:Name="buttonWorkout" Content="{DynamicResource Workout}" HorizontalAlignment="Left" Margin="104,275,0,0" VerticalAlignment="Top" 
+                    <Button x:Name="buttonWorkout" Content="{DynamicResource Workout}" HorizontalAlignment="Left" Margin="104,291,0,0" VerticalAlignment="Top" 
                         Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="193" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Grid.Column="1" Click="buttonWorkout_Click"/>
                     <Label x:Name="labelActivityLevelLow" Content="{DynamicResource ActivityLevelLow}" HorizontalAlignment="Left" Margin="103,182,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="100" Grid.Column="1"/>
@@ -139,15 +141,8 @@
                             </StackPanel>
                         </Border>
                     </Popup>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="tabChart" Header="{DynamicResource TabChart}" Height="22" Margin="-2,-2,0,0" VerticalAlignment="Top" 
-                     HorizontalAlignment="Left" Width="77">
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="435" Width="800" Background="#EEE2DC">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" MinWidth="406"/>
-                        <ColumnDefinition Width="Auto" MinWidth="177"/>
-                    </Grid.ColumnDefinitions>
+                    <Button x:Name="buttonExcel" Content="{DynamicResource ForExcel}" HorizontalAlignment="Left" Margin="180,337,0,0" VerticalAlignment="Top" 
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Click="buttonPlan_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

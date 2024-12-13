@@ -17,6 +17,7 @@
     <None Remove="pictures\icon_closed_eye.png" />
     <None Remove="pictures\InvertedTriangle_m.png" />
     <None Remove="pictures\InvertedTriangle_w.png" />
+    <None Remove="pictures\notification.png" />
     <None Remove="pictures\Pear_m.png" />
     <None Remove="pictures\Pear_w.png" />
     <None Remove="pictures\Rectangle_m.png" />
@@ -52,6 +53,7 @@
     </Resource>
     <Resource Include="pictures\InvertedTriangle_m.png" />
     <Resource Include="pictures\InvertedTriangle_w.png" />
+    <Resource Include="pictures\notification.png" />
     <Resource Include="pictures\Pear_m.png" />
     <Resource Include="pictures\Pear_w.png" />
     <Resource Include="pictures\Rectangle_m.png" />

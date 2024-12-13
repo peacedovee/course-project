@@ -18,8 +18,14 @@
     <sys:String x:Key="Male">М</sys:String>
 
     <sys:String x:Key="LoginOrPasswordWrongMessage">Неверный логин или пароль</sys:String>
-    <sys:String x:Key="LoginMessage">Логин должен быть длиной от 4 до 12 символов</sys:String>
+    <sys:String x:Key="LoginMessage">Логин должен быть длиной от 4 до 12 символов, а так же содержать только цифры и буквы латинского алфавита</sys:String>
     <sys:String x:Key="PasswordMessage">Пароль должен быть длиной от 4 до 8 символов</sys:String>
+    <sys:String x:Key="AgeRestrictionMessage">Для регистрации вам должно быть больше 18 лет</sys:String>
+    <sys:String x:Key="InvalidDateMessage">Введите корректную дату</sys:String>
+    <sys:String x:Key="DateMessage">Данные можно ввести не раньше, чем на два года</sys:String>
+    <sys:String x:Key="SuccessfulRecording">Запись сохранена успешно!</sys:String>
+    <sys:String x:Key="UpdatedRecording">Запись на такую дату уже есть, данные были обновлены</sys:String>
+    <sys:String x:Key="RecordingError">Непредвиденная ошибка</sys:String>
     <sys:String x:Key="SuccessMessage">Ура</sys:String>
     <sys:String x:Key="LoginExistsMessage">Такой логин уже есть</sys:String>
     <sys:String x:Key="RegistrationErrorMessage">Произошла ошибка регистрации</sys:String>
@@ -27,14 +33,13 @@
 
     <sys:String x:Key="TabParameters">Параметры</sys:String>
     <sys:String x:Key="TabResults">Результаты</sys:String>
-    <sys:String x:Key="TabChart">График</sys:String>
     <sys:String x:Key="RecordingDate">Дата создания записи</sys:String>
-    <sys:String x:Key="Hight">Рост</sys:String>
+    <sys:String x:Key="Height">Рост</sys:String>
     <sys:String x:Key="Weight">Вес</sys:String>
     <sys:String x:Key="Wrist">Обхват запястья</sys:String>
     <sys:String x:Key="GirthWaist">Обхват талии</sys:String>
-    <sys:String x:Key="GirthBreast">Обхват бёдер</sys:String>
-    <sys:String x:Key="GirthHips">Обхват груди</sys:String>
+    <sys:String x:Key="GirthBreast">Обхват груди</sys:String>
+    <sys:String x:Key="GirthHips">Обхват бёдер</sys:String>
     <sys:String x:Key="Record">Сохранить</sys:String>
 
     <sys:String x:Key="IndividualPlan">Индивидуальный план</sys:String>
@@ -46,6 +51,7 @@
     <sys:String x:Key="Purpose">Цель</sys:String>
     <sys:String x:Key="PhysicalActivity">Уровнь физ. активности</sys:String>
     <sys:String x:Key="MealPlan">Получить план питания</sys:String>
+    <sys:String x:Key="ForExcel">Просмотр записей в Excel</sys:String>
     <sys:String x:Key="Workout">Получить тренировку</sys:String>
     <sys:String x:Key="FoodPreferences">Выберите предпочтения</sys:String>
     <sys:String x:Key="Vegetarian">Вегетарианец</sys:String>
@@ -57,6 +63,12 @@
     <sys:String x:Key="ActivityLevelLow">1. Низкий</sys:String>
     <sys:String x:Key="ActivityLevelMedium">2. Средний</sys:String>
     <sys:String x:Key="ActivityLevelHigh">3. Высокий</sys:String>
+
+    <sys:String x:Key="LackOfWeight">У вас значительный недостаток массы тела. Необходимо обратиться к врачу и увеличить вес.</sys:String>
+    <sys:String x:Key="SmallExcessOfTheBody">У вас небольшой избыток массы тела. Желательно снизить вес.</sys:String>
+    <sys:String x:Key="FirstDegreeOfObesity">У вас ожирение первой степени. Необходимо обратиться к врачу и снизить вес.</sys:String>
+    <sys:String x:Key="SecondDegreeOfObesity">У вас ожирение второй степени. Крайне необходимо обратиться к врачу и снизить вес.</sys:String>
+    <sys:String x:Key="ThirdDegreeOfObesity">У вас ожирение третьей степени. Необходимо срочно обратиться к врачу и снизить вес.</sys:String>
 
     <sys:String x:Key="PictureInvertedTriangle">Перевёрнутый треугольник</sys:String>
     <sys:String x:Key="PicturePear">Груша (треугольник)</sys:String>
@@ -82,8 +94,14 @@
     <sys:String x:Key="Male_en">M</sys:String>
 
     <sys:String x:Key="LoginOrPasswordWrongMessage_en">Invalid login or password</sys:String>
-    <sys:String x:Key="LoginMessage_en">The login must be between 4 and 12 characters long</sys:String>
+    <sys:String x:Key="LoginMessage_en">The login must be between 4 and 12 characters long, and contain only numbers and letters of the Latin alphabet</sys:String>
     <sys:String x:Key="PasswordMessage_en">The password must be between 4 and 8 characters long</sys:String>
+    <sys:String x:Key="AgeRestrictionMessage_en">You must be over 18 years old to register</sys:String>
+    <sys:String x:Key="InvalidDateMessage_en">Enter the correct date</sys:String>
+    <sys:String x:Key="DateMessage_en">The data can be entered no earlier than two years</sys:String>
+    <sys:String x:Key="SuccessfulRecording_en">The record was saved successfully!</sys:String>
+    <sys:String x:Key="UpdatedRecording_en">There is already an entry for such a date, the data has been updated</sys:String>
+    <sys:String x:Key="RecordingError_en">Unexpected error</sys:String>
     <sys:String x:Key="SuccessMessage_en">Hooray</sys:String>
     <sys:String x:Key="LoginExistsMessage_en">This login already exists</sys:String>
     <sys:String x:Key="RegistrationErrorMessage_en">Registration error occurred</sys:String>
@@ -91,9 +109,8 @@
 
     <sys:String x:Key="TabParameters_en">Parameters</sys:String>
     <sys:String x:Key="TabResults_en">Results</sys:String>
-    <sys:String x:Key="TabChart_en">Chart</sys:String>
     <sys:String x:Key="RecordingDate_en">Recording Date</sys:String>
-    <sys:String x:Key="Hight_en">Hight</sys:String>
+    <sys:String x:Key="Height_en">Height</sys:String>
     <sys:String x:Key="Weight_en">Weight</sys:String>
     <sys:String x:Key="Wrist_en">Wrist circumference</sys:String>
     <sys:String x:Key="GirthWaist_en">Girth Waist</sys:String>
@@ -110,6 +127,7 @@
     <sys:String x:Key="Purpose_en">Goal</sys:String>
     <sys:String x:Key="PhysicalActivity_en">Physical activity</sys:String>
     <sys:String x:Key="MealPlan_en">Get a meal plan</sys:String>
+    <sys:String x:Key="ForExcel_en">Viewing records in Excel</sys:String>
     <sys:String x:Key="Workout_en">Get a workout</sys:String>
     <sys:String x:Key="FoodPreferences_en">Select your preferences</sys:String>
     <sys:String x:Key="Vegetarian_en">Vegetarian</sys:String>
@@ -121,6 +139,12 @@
     <sys:String x:Key="ActivityLevelLow_en">1. Low</sys:String>
     <sys:String x:Key="ActivityLevelMedium_en">2. Medium</sys:String>
     <sys:String x:Key="ActivityLevelHigh_en">3. High</sys:String>
+
+    <sys:String x:Key="LackOfWeight_en">You have a significant lack of body weight. It is necessary to consult a doctor and increase the weight.</sys:String>
+    <sys:String x:Key="SmallExcessOfTheBody_en">You have a slight excess body weight. It is advisable to reduce weight.</sys:String>
+    <sys:String x:Key="FirstDegreeOfObesity_en">You are obese in the first degree. It is necessary to consult a doctor and reduce weight.</sys:String>
+    <sys:String x:Key="SecondDegreeOfObesity_en">You have second degree obesity. It is extremely necessary to consult a doctor and reduce weight.</sys:String>
+    <sys:String x:Key="ThirdDegreeOfObesity_en">You have third degree obesity. It is necessary to urgently consult a doctor and reduce weight.</sys:String>
 
     <sys:String x:Key="PictureInvertedTriangle_en">Inverted Triangle</sys:String>
     <sys:String x:Key="PicturePear_en">Pear</sys:String>

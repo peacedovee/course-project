@@ -123,7 +123,7 @@ namespace VIO
 
         private bool AreFieldsValid()
         {
-            string loginPattern = @"^[a-zA-Zа-яА-Я0-9]{4,12}$"; // Логин может содержать буквы (латиница и кириллица) и цифры, длина от 4 до 12 символов
+            string loginPattern = @"^[a-zA-Z0-9]{4,12}$"; // Логин может содержать только буквы латиницы и цифры, длина от 4 до 12 символов
             string passwordPattern = @"^[a-zA-Zа-яА-Я0-9]{4,12}$"; // Пароль может содержать буквы (латиница и кириллица) и цифры, длина от 4 до 12 символов
 
             if (string.IsNullOrWhiteSpace(textBoxLogin.Text) ||
@@ -157,16 +157,30 @@ namespace VIO
             password = passwordBox.Password;
 
             string name = textBoxName.Text;
-            string birthday = DatePickerBirthday.Text;
+            string birthdayString = DatePickerBirthday.Text;
+            DateTime birthday;
+            DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out birthday);
+
             int gender = comboboxGender.SelectedIndex;
 
             initAccount(login, password);
-            //accountManager = AccountManager.getInstance();
-            //database = new DatabaseManager();
+
+            // Проверка возраста
+            int age = DateTime.Now.Year - birthday.Year;
+            if (DateTime.Now < birthday.AddYears(age)) // Корректируем возраст, если день рождения еще не наступил в этом году
+            {
+                age--;
+            }
+
+            if (age < 18)
+            {
+                MessageBox.Show((string)Application.Current.Resources["AgeRestrictionMessage"]);
+                return;
+            }
 
             if (AreFieldsValid())
             {
-                int result = accountManager.Registration(name, birthday, gender);
+                int result = accountManager.Registration(name, birthdayString, gender);
 
                 switch (result)
                 {

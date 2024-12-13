@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
@@ -15,11 +16,11 @@ namespace VIO
         Calculation calculation;
         private const string IniFilePath = "settings.ini"; 
         private IniFile iniFile;
-        double height;
-        double weight;
-        double waist;
-        double hips;
-        double bust;
+        double height; // рост
+        double weight; // вес
+        double waist; // талия
+        double hips; // бёдра
+        double bust; // грудь
         int age;
         int coef;
 
@@ -47,25 +48,24 @@ namespace VIO
         // сохранение параметров пользователя при закрытии окна
         private void SaveSettings()
         {
-            iniFile.Write("Parameters", "Height", UpDownHight.Value.ToString());
-            iniFile.Write("Parameters", "Hips", UpDownGirthHips.Value.ToString());
+            iniFile.Write("Parameters", "Height", UpDownHeight.Value.ToString());
+            iniFile.Write("Parameters", "Breast", UpDownGirthBreast.Value.ToString());
             iniFile.Write("Parameters", "Waist", UpDownGirthWaist.Value.ToString());
             iniFile.Write("Parameters", "Wrist", comboboxWrist.Text);
-            iniFile.Write("Parameters", "Breast", UpDownGirthBreast.Value.ToString());
+            iniFile.Write("Parameters", "Hips", UpDownGirthHips.Value.ToString());
             iniFile.Write("Parameters", "Weight", UpDownGirthWeight.Value.ToString());
         }
 
         // добавление последних введённых параметров при открытии окна
         private void LoadSettings()
         {
-            UpDownHight.Value = int.TryParse(iniFile.Read("Parameters", "Height"), out int height) ? height : 10;
-            UpDownGirthHips.Value = int.TryParse(iniFile.Read("Parameters", "Hips"), out int hips) ? hips : 10;
+            UpDownHeight.Value = int.TryParse(iniFile.Read("Parameters", "Height"), out int height) ? height : 10;
+            UpDownGirthBreast.Value = int.TryParse(iniFile.Read("Parameters", "Breast"), out int breast) ? breast : 10;
             UpDownGirthWaist.Value = int.TryParse(iniFile.Read("Parameters", "Waist"), out int waist) ? waist : 10;
             comboboxWrist.Text = iniFile.Read("Parameters", "Wrist");
-            UpDownGirthBreast.Value = int.TryParse(iniFile.Read("Parameters", "Breast"), out int breast) ? breast : 10;
+            UpDownGirthHips.Value = int.TryParse(iniFile.Read("Parameters", "Hips"), out int hips) ? hips : 10;
             UpDownGirthWeight.Value = int.TryParse(iniFile.Read("Parameters", "Weight"), out int weight) ? weight : 10;
         }
-
 
         // изменение языка
         private void OnLanguageChanged(string lang)
@@ -99,14 +99,13 @@ namespace VIO
 
             tabParameters.Header = Application.Current.Resources["TabParameters"];
             tabResults.Header = Application.Current.Resources["TabResults"];
-            tabChart.Header = Application.Current.Resources["TabChart"];
             labelDate.Content = Application.Current.Resources["RecordingDate"];
-            labelHight.Content = Application.Current.Resources["Hight"];
+            labelHeight.Content = Application.Current.Resources["Height"];
             labelWeight.Content = Application.Current.Resources["Weight"];
             labelWrist.Content = Application.Current.Resources["Wrist"];
             labelGirthWaist.Content = Application.Current.Resources["GirthWaist"];
-            labelGirthHips.Content = Application.Current.Resources["GirthHips"];
             labelGirthBreast.Content = Application.Current.Resources["GirthBreast"];
+            labelGirthHips.Content = Application.Current.Resources["GirthHips"];
             buttonRecord.Content = Application.Current.Resources["Record"];
 
             labelPlan.Content = Application.Current.Resources["IndividualPlan"];
@@ -126,6 +125,7 @@ namespace VIO
             ComboBoxMaintainWeight.Content = Application.Current.Resources["MaintainWeight"];
 
             buttonPlan.Content = Application.Current.Resources["MealPlan"];
+            buttonExcel.Content = Application.Current.Resources["ForExcel"];
             buttonWorkout.Content = Application.Current.Resources["Workout"];
 
             TextBlockPreferences.Text = (string)Application.Current.Resources["FoodPreferences"];
@@ -137,29 +137,32 @@ namespace VIO
         // вычисление типа фигуры
         private string DetermineBodyType(double waist, double hips, double bust)
         {
+            int gender = accountManager.UserDataSelect();
+            string suffix = (gender == 0) ? "_w" : "_m"; // Определение суффикса в зависимости от гендера
+
             if (hips > bust && hips > waist)
             {
-                return "InvertedTriangle_w"; // Перевернутый треугольник
+                return "InvertedTriangle" + suffix; // Перевернутый треугольник
             }
             else if (bust > hips && bust > waist)
             {
-                return "Pear_w"; // Треугольник
+                return "Pear" + suffix; // Треугольник
             }
             else if (bust == hips && waist == bust)
             {
-                return "Rectangle_w"; // Прямоугольник
+                return "Rectangle" + suffix; // Прямоугольник
             }
             else if (bust == hips && waist < bust)
             {
-                return "Hourglass_w"; // Песочные часы
+                return "Hourglass" + suffix; // Песочные часы
             }
             else if (waist > bust && waist > hips)
             {
-                return "Round_w"; // Круг
+                return "Round" + suffix; // Круг
             }
             else
             {
-                return "Square"; // Квадрат
+                return "Square" + suffix; // Квадрат
             }
         }
 
@@ -185,11 +188,26 @@ namespace VIO
         // кнопка сохранения в базу данных
         private void ButtonRecord_Click(object sender, RoutedEventArgs e)
         {
-            //accountManager = new AccountManager();
-
             float coef = 0;
-            string recordingDate = DatePickerRecording.Text; // дата записи
-            int height = UpDownHight.Value ?? 0; // рост
+            string recordingDateText = DatePickerRecording.Text; // дата записи
+            DateTime recordingDate;
+            DateTime.TryParseExact(recordingDateText, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out recordingDate);
+
+            // Проверка на дату позже текущей
+            if (recordingDate > DateTime.Now)
+            {
+                MessageBox.Show((string)Application.Current.Resources["InvalidDateMessage"]);
+                return;
+            }
+
+            // Проверка на дату раньше более чем на два года
+            if (recordingDate < DateTime.Now.AddYears(-2))
+            {
+                MessageBox.Show((string)Application.Current.Resources["DateMessage"]);
+                return;
+            }
+
+            int height = UpDownHeight.Value ?? 0; // рост
             double weight = UpDownGirthWeight.Value ?? 0; // вес
             int wrist = comboboxWrist.SelectedIndex; // запястье
             int waist = UpDownGirthWaist.Value ?? 0; // талия
@@ -211,19 +229,19 @@ namespace VIO
 
             accountManager = AccountManager.getInstance();
 
-            int result = accountManager.UserParameters(recordingDate, height, (float)weight, coef, breast, waist, hips);
+            int result = accountManager.UserParameters(recordingDateText, height, (float)weight, coef, breast, waist, hips);
 
             if (result == 0)
             {
-                // Запись произошла успешно
+                MessageBox.Show((string)Application.Current.Resources["SuccessfulRecording"]);
             }
-            if(result == 1)
+            if (result == 1)
             {
-                // Запись на такую дату уже есть, данные были обновлены
+                MessageBox.Show((string)Application.Current.Resources["UpdatedRecording"]);
             }
-            if(result == 2)
+            if (result == 2)
             {
-                //Ёмаё, кажись ошибка
+                MessageBox.Show((string)Application.Current.Resources["RecordingError"]);
             }
         }
 
@@ -273,8 +291,8 @@ namespace VIO
         private void tabResults_Loaded(object sender, RoutedEventArgs e)
         {
             UpDownGirthWaist.ValueChanged += UpDown_ValueChanged;
-            UpDownGirthHips.ValueChanged += UpDown_ValueChanged;
             UpDownGirthBreast.ValueChanged += UpDown_ValueChanged;
+            UpDownGirthHips.ValueChanged += UpDown_ValueChanged;
 
             UpdatePicture();
         }
@@ -349,7 +367,44 @@ namespace VIO
             idealWeight = calculation.IdealWeight();
             labelIdealWeightNumber.Content = idealWeight.ToString("F2");
 
-
+            if (bmi < 18.5 || bmi > 24.9) 
+            { 
+                NotificationImage.Visibility = Visibility.Visible; 
+            } 
+            else 
+            { 
+                NotificationImage.Visibility = Visibility.Hidden; 
+            }
         }
+
+        private void NotificationImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            double bmi = 0;
+            calculation = new Calculation();
+            bmi = calculation.CalculationBmi();
+            labelBMINumber.Content = bmi.ToString("F2");
+
+            if (bmi < 18.4)
+            {
+                MessageBox.Show((string)Application.Current.Resources["LackOfWeight"]);
+            }
+            else if (bmi > 25 && bmi < 30)
+            {
+                MessageBox.Show((string)Application.Current.Resources["SmallExcessOfTheBody"]);
+            }
+            else if (bmi > 30 && bmi < 35)
+            {
+                MessageBox.Show((string)Application.Current.Resources["FirstDegreeOfObesity"]);
+            }
+            else if (bmi > 35 && bmi < 40)
+            {
+                MessageBox.Show((string)Application.Current.Resources["SecondDegreeOfObesity"]);
+            }
+            else if (bmi > 40)
+            {
+                MessageBox.Show((string)Application.Current.Resources["ThirdDegreeOfObesity"]);
+            }
+        }
+
     }
 }

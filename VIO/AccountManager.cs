@@ -250,7 +250,6 @@ namespace VIO
             }
             else if(dateCount > 0)
             {
-                MessageBox.Show("Много записей, обновляем");
                 string queryString = "UPDATE Parameters SET IDUser = @IDUser, RecordingDate = @RecordingDate, Hight = @Hight, Weight = @Weight, CoefGirthWrist = @CoefGirthWrist,GirthBreast = @GirthBreast, GirthWaist = @GirthWaist, GirthHips = @GirthHips WHERE RecordingDate = @RecordingDate AND IDUser = @IDUser";
 
                 using (SQLiteCommand command = new SQLiteCommand(queryString, database.GetConnection()))
