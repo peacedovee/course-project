@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -147,7 +148,7 @@ namespace VIO
 
         private void initAccount(string login, string password)
         {
-            accountManager = AccountManager.getInstance();
+            accountManager = AccountManager.getInstance(true);
             accountManager.SetUserCred(login, password);
         }
 
@@ -159,7 +160,11 @@ namespace VIO
             string name = textBoxName.Text;
             string birthdayString = DatePickerBirthday.Text;
             DateTime birthday;
-            DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out birthday);
+            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" }; 
+            DateTime.TryParseExact(birthdayString, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthday);
+            //bool isParsed = DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthday);
+            //DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthday);
+            //DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out birthday);
 
             int gender = comboboxGender.SelectedIndex;
 

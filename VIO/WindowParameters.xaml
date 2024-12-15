@@ -114,7 +114,7 @@
                     <Label x:Name="labelWaterNumber" Content="0" HorizontalAlignment="Left" Margin="2,253,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="29" Width="88" Grid.Column="1"/>
                     <Button x:Name="buttonPlan" Content="{DynamicResource MealPlan}" HorizontalAlignment="Left" Margin="180,291,0,0" VerticalAlignment="Top" 
-                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Click="buttonPlan_Click"/>
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Click="ButtonPlan_Click"/>
                     <Label x:Name="labelActivity" Content="{DynamicResource PhysicalActivity}" HorizontalAlignment="Left" Margin="104,101,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="217" Grid.Column="1"/>
                     <Slider x:Name="sliderActivity" Grid.Column="1" Minimum="1" Maximum="3" HorizontalAlignment="Left" Margin="104,139,0,0" 
@@ -142,7 +142,7 @@
                         </Border>
                     </Popup>
                     <Button x:Name="buttonExcel" Content="{DynamicResource ForExcel}" HorizontalAlignment="Left" Margin="180,337,0,0" VerticalAlignment="Top" 
-                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Click="buttonPlan_Click"/>
+                        Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="259" FontFamily="Cooper Black" FontSize="15" Foreground="#AC3B61" Height="30" Click="buttonExcel_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

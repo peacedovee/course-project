@@ -1,9 +1,13 @@
-﻿using System.Windows;
+﻿using Microsoft.Win32;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
+using OfficeOpenXml;
+using System.IO;
+
 
 namespace VIO
 {
@@ -256,8 +260,26 @@ namespace VIO
         }
 
         // получение плана питания, открытие окна с предпочтениями
-        private void buttonPlan_Click(object sender, RoutedEventArgs e)
+        private void ButtonPlan_Click(object sender, RoutedEventArgs e)
         {
+            int resultRB = 0;
+            if (RBVegetarian.IsChecked == true)
+            {
+                resultRB = 1;
+            }
+            else if (RBVegan.IsChecked == true)
+            {
+                resultRB = 2;
+            }
+            else if (RBStandart.IsChecked == true)
+            {
+                resultRB = 3;
+            }
+            MealPlan plan = new MealPlan(3);
+
+            
+            Word word = new Word();
+            word.RecordWord(3);
             NotificationPopup.IsOpen = true;
         }
 
@@ -406,5 +428,12 @@ namespace VIO
             }
         }
 
+        private void buttonExcel_Click(object sender, RoutedEventArgs e)
+        {
+            Excel excel = new Excel();
+            List<object> records = accountManager.GettingAllParameters();
+
+            excel.RecordExcel(records);
+        }
     }
 }

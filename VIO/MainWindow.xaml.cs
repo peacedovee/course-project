@@ -88,7 +88,7 @@ namespace VIO
 
         private void initAccount(string login, string password)
         {
-            accountManager = AccountManager.getInstance();
+            accountManager = AccountManager.getInstance(true);
             accountManager.SetUserCred(login, password);
         }
         private void buttonEntrance_Click(object sender, RoutedEventArgs e)

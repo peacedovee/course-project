@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 
+
 namespace VIO
 {
     class AccountManager // Работа с аккаунтами
@@ -31,10 +32,16 @@ namespace VIO
         {
             database = new DatabaseManager();
         }
-
         public static AccountManager getInstance()
         {
             if (instance == null)
+                instance = new AccountManager();
+            return instance;
+        }
+
+        public static AccountManager getInstance(bool init)
+        {
+            if (instance == null || init == true)
                 instance = new AccountManager();
             return instance;
         }
@@ -274,7 +281,7 @@ namespace VIO
         }
         // Добавила
 
-        public (int age, int height, float weight, float coef) Calc() 
+        public (int age, int height, float weight, float coef) CalculateData() 
         {
 
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -306,6 +313,45 @@ namespace VIO
             return (0, 0, 0, 0);
         }
 
+        public List<object> GettingAllParameters()
+        {
+            List<object> records = new List<object>(); 
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            DataTable table = new DataTable();
+
+            string querystring = "SELECT * FROM Parameters WHERE IDUser = @IDUser";
+            using (SQLiteCommand command = new SQLiteCommand(querystring, database.GetConnection())) // замените connectionString на вашу строку подключения
+            {
+                
+                command.Parameters.AddWithValue("@IDUser", idEntrance); 
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+            }
+
+            foreach (DataRow row in table.Rows)
+            {
+                DateTime recordingDate = DateTime.Parse(row["RecordingDate"].ToString());
+                int height = Convert.ToInt32(row["Hight"]);
+                float weight = Convert.ToSingle(row["Weight"]);
+                float coef = Convert.ToSingle(row["CoefGirthWrist"]);
+                int girthBreast = Convert.ToInt32(row["GirthBreast"]);
+                int girthWaist = Convert.ToInt32(row["GirthWaist"]);
+                int girthHips = Convert.ToInt32(row["GirthHips"]);
+
+
+                records.Add(new
+                {
+                    RecordingDate = recordingDate,
+                    Height = height,
+                    Weight = weight,
+                    CoefGirthWrist = coef,
+                    GirthBreast = girthBreast,
+                    GirthWaist = girthWaist,
+                    GirthHips = girthHips 
+                });
+            }
+            return records;
+        }
     }
 }
 
