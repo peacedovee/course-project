@@ -12,7 +12,7 @@ namespace VIO
 {
     /// <summary>
     /// Логика взаимодействия для WindowParameters.xaml
-    /// </summary>
+    /// </summary> 
     public partial class WindowParameters : Window
     {
         AccountManager accountManager;
@@ -197,7 +197,8 @@ namespace VIO
             float coef = 0;
             string recordingDateText = DatePickerRecording.Text; // дата записи
             DateTime recordingDate;
-            DateTime.TryParseExact(recordingDateText, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out recordingDate);
+            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" };
+            DateTime.TryParseExact(recordingDateText, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out recordingDate);
 
             // Проверка на дату позже текущей
             if (recordingDate > DateTime.Now)
