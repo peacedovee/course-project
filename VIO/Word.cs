@@ -24,7 +24,9 @@ namespace VIO
                 string filePath = saveFileDialog.FileName; 
                 using (var document = DocX.Create(filePath)) 
                 { 
-                    document.InsertParagraph("Ваш план питания на день:").FontSize(16).Bold().Alignment = Alignment.center; foreach (var meal in dailyPlan) 
+                    document.InsertParagraph("Ваш план питания на день:").FontSize(16).Bold().Alignment = Alignment.center; 
+
+                    foreach (var meal in dailyPlan) 
                     { 
                         document.InsertParagraph($"- {meal.ProductName}").FontSize(12).SpacingAfter(10); 
                     } 

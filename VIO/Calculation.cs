@@ -26,13 +26,28 @@ namespace VIO
 
         }
 
+        //public double CalculationBmi()
+        //{
+        //    Data();
+        //    double bmi = weight / Math.Pow(height, 2) * 10000;
+
+        //    return bmi;
+        //}
+
         public double CalculationBmi()
         {
             Data();
-            double bmi = weight / Math.Pow(height, 2) * 10000;
 
-            return bmi;
+            if (weight == 0 || height == 0)
+            {
+                return 0;
+            }
+
+            double bmi = weight / Math.Pow(height, 2) * 10000;
+            return double.IsNaN(bmi) ? 0 : bmi;
         }
+
+
         public float CalculationCalories()
         {
             float calories = 0;

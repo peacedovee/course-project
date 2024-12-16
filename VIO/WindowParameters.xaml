@@ -89,12 +89,12 @@
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="166"/>
                     <Label x:Name="labelGoal" Content="{DynamicResource Purpose}" HorizontalAlignment="Left" Margin="174,177,0,0" VerticalAlignment="Top"
                         FontFamily="Cooper Black" FontSize="15" Foreground="#123C69" Height="29" Width="72"/>
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    <ComboBox x:Name="comboboxGoal" HorizontalAlignment="Left" VerticalAlignment="Top" 
                         Margin="246,177,0,0" Width="193"
                         FontFamily="Cooper Black" FontSize="15" 
                         Background="#EEE2DC" Foreground="#123C69" SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBoxItem x:Name="ComboBoxGainWeight" Content="{DynamicResource GainWeight}" />
-                        <ComboBoxItem x:Name="ComboBoxLoseWeight" Content="{DynamicResource LoseWeight}" />
+                        <ComboBoxItem x:Name="ComboBoxLoseWeight" Content="{DynamicResource LoseWeight}" IsSelected="True" />
                         <ComboBoxItem x:Name="ComboBoxMaintainWeight" Content="{DynamicResource MaintainWeight}" />
                     </ComboBox>
                     <Label x:Name="labelBMI" Content="{DynamicResource BMI}" HorizontalAlignment="Left" Margin="174,101,0,0" VerticalAlignment="Top"

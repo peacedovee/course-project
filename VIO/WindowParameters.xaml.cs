@@ -8,7 +8,6 @@ using System.Windows.Media.Media3D;
 using OfficeOpenXml;
 using System.IO;
 
-
 namespace VIO
 {
     /// <summary>
@@ -20,19 +19,22 @@ namespace VIO
         Calculation calculation;
         private const string IniFilePath = "settings.ini"; 
         private IniFile iniFile;
-        double height; // рост
-        double weight; // вес
-        double waist; // талия
-        double hips; // бёдра
-        double bust; // грудь
-        int age;
-        int coef;
+        private double height; // рост
+        private double weight; // вес
+        private double waist; // талия
+        private double hips; // бёдра
+        private double bust; // грудь
+        private int age;
+        private int coef;
+        private string language;
 
         public WindowParameters(string initialLanguage)
         {
             InitializeComponent();
             MainWindow.LanguageChanged += OnLanguageChanged;
             ChangeLanguage(initialLanguage);
+
+            language = initialLanguage;
 
             iniFile = new IniFile(IniFilePath);
             this.Loaded += WindowParameters_Loaded;
@@ -144,11 +146,11 @@ namespace VIO
             int gender = accountManager.UserDataSelect();
             string suffix = (gender == 0) ? "_w" : "_m"; // Определение суффикса в зависимости от гендера
 
-            if (hips > bust && hips > waist)
+            if (hips < bust && hips > waist)
             {
                 return "InvertedTriangle" + suffix; // Перевернутый треугольник
             }
-            else if (bust > hips && bust > waist)
+            else if (bust < hips && bust > waist)
             {
                 return "Pear" + suffix; // Треугольник
             }
@@ -166,7 +168,7 @@ namespace VIO
             }
             else
             {
-                return "Square" + suffix; // Квадрат
+                return "Rectangle" + suffix; // Прямоугольник
             }
         }
 
@@ -262,7 +264,15 @@ namespace VIO
         // получение плана питания, открытие окна с предпочтениями
         private void ButtonPlan_Click(object sender, RoutedEventArgs e)
         {
+            NotificationPopup.IsOpen = true;
+        }
+
+        // выбор предпочтений
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
             int resultRB = 0;
+
+            // Получаем значение выбора
             if (RBVegetarian.IsChecked == true)
             {
                 resultRB = 1;
@@ -275,34 +285,20 @@ namespace VIO
             {
                 resultRB = 3;
             }
-            MealPlan plan = new MealPlan(3);
 
-            
-            Word word = new Word();
-            word.RecordWord(3);
-            NotificationPopup.IsOpen = true;
+            // Закрываем Popup
+            NotificationPopup.IsOpen = false;
+
+            // Выполняем основное действие после получения выбора
+            ExecuteMealPlan(resultRB);
         }
 
-        // вывод предпочтений (вместо этого будем создавать план на основе предпочтений)
-        private void OKButton_Click(object sender, RoutedEventArgs e)
+        private void ExecuteMealPlan(int resultRB)
         {
-            string selectedOption = "Ни один вариант не выбран";
+            MealPlan plan = new MealPlan(resultRB);
 
-            if (RBVegetarian.IsChecked == true)
-            {
-                selectedOption = "Вегетарианец";
-            }
-            else if (RBVegan.IsChecked == true)
-            {
-                selectedOption = "Веган";
-            }
-            else if (RBStandart.IsChecked == true)
-            {
-                selectedOption = "Стандартный";
-            }
-
-            MessageBox.Show($"Вы выбрали: {selectedOption}");
-            NotificationPopup.IsOpen = false;
+            Word word = new Word();
+            word.RecordWord(resultRB);
         }
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -365,6 +361,8 @@ namespace VIO
                 TabItem selectedTab = (TabItem)mainTabControl.SelectedItem;
             }
 
+            int goal = comboboxGoal.SelectedIndex; // ЦЕЛЬ!!! Ю НОУ???
+
             accountManager = AccountManager.getInstance();
             int gender = accountManager.UserDataSelect();
 
@@ -373,29 +371,53 @@ namespace VIO
             int water = 0;
             float idealWeight = 0;
 
-            //double height = UpDownHight.Value ?? 0; // рост
-            //double weight = UpDownGirthWeight.Value ?? 0; // вес
+            if (calculation == null)
+            {
+                calculation = new Calculation();
+            }
 
-            calculation = new Calculation();
+            // Проверка значения bmi
             bmi = calculation.CalculationBmi();
-            labelBMINumber.Content = bmi.ToString("F2");
+            if (labelBMINumber != null)
+            {
+                labelBMINumber.Content = double.IsNaN(bmi) ? "0" : bmi.ToString("F2");
+            }
 
+            // Проверка значения calories
             calories = calculation.CalculationCalories();
-            labelCaloriesNumber.Content = ((int)calories).ToString();
+            if (labelCaloriesNumber != null)
+            {
+                labelCaloriesNumber.Content = float.IsNaN(calories) ? "0" : ((int)calories).ToString();
+            }
 
+            // Проверка значения water
             water = calculation.CalculationWater();
-            labelWaterNumber.Content = water.ToString();
+            if (labelWaterNumber != null)
+            {
+                labelWaterNumber.Content = water == 0 ? "0" : water.ToString();
+            }
 
+            // Проверка значения idealWeight
             idealWeight = calculation.IdealWeight();
-            labelIdealWeightNumber.Content = idealWeight.ToString("F2");
+            if (labelIdealWeightNumber != null)
+            {
+                labelIdealWeightNumber.Content = float.IsNaN(idealWeight) ? "0" : idealWeight.ToString("F2");
+            }
 
-            if (bmi < 18.5 || bmi > 24.9) 
-            { 
-                NotificationImage.Visibility = Visibility.Visible; 
-            } 
-            else 
-            { 
-                NotificationImage.Visibility = Visibility.Hidden; 
+            // Проверка значения bmi для отображения NotificationImage
+            if (bmi < 18.5 || bmi > 24.9)
+            {
+                if (NotificationImage != null)
+                {
+                    NotificationImage.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                if (NotificationImage != null)
+                {
+                    NotificationImage.Visibility = Visibility.Hidden;
+                }
             }
         }
 
