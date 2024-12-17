@@ -27,18 +27,20 @@ namespace VIO
             this.Loaded += new RoutedEventHandler(LoadingWindow_Loaded);
         }
 
+        // создание и запуск нового потока
         private void LoadingWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Thread loadingThread = new Thread(new ThreadStart(SimulateLoading));
             loadingThread.Start();
         }
 
+        // имитация процесса загрузки
         private void SimulateLoading()
         {
             Dispatcher.Invoke(() => progressBar.Value = 0);
             for (int i = 0; i <= 100; i++)
             {
-                Thread.Sleep(50); // Имитация загрузки
+                Thread.Sleep(50);
                 Dispatcher.Invoke(() =>
                 {
                     progressBar.Value = i;

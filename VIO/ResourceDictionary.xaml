@@ -63,6 +63,7 @@
     <sys:String x:Key="ActivityLevelLow">1. Низкий</sys:String>
     <sys:String x:Key="ActivityLevelMedium">2. Средний</sys:String>
     <sys:String x:Key="ActivityLevelHigh">3. Высокий</sys:String>
+    <sys:String x:Key="Preferences">Вы не указали предпочтения</sys:String>
 
     <sys:String x:Key="LackOfWeight">У вас значительный недостаток массы тела. Необходимо обратиться к врачу и увеличить вес.</sys:String>
     <sys:String x:Key="SmallExcessOfTheBody">У вас небольшой избыток массы тела. Желательно снизить вес.</sys:String>
@@ -139,6 +140,7 @@
     <sys:String x:Key="ActivityLevelLow_en">1. Low</sys:String>
     <sys:String x:Key="ActivityLevelMedium_en">2. Medium</sys:String>
     <sys:String x:Key="ActivityLevelHigh_en">3. High</sys:String>
+    <sys:String x:Key="Preferences_en">You didn't specify your preferences</sys:String>
 
     <sys:String x:Key="LackOfWeight_en">You have a significant lack of body weight. It is necessary to consult a doctor and increase the weight.</sys:String>
     <sys:String x:Key="SmallExcessOfTheBody_en">You have a slight excess body weight. It is advisable to reduce weight.</sys:String>

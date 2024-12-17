@@ -253,6 +253,7 @@ namespace VIO
             }
         }
 
+        // изменение картинки с типом фигуры
         private void UpdatePicture()
         {
             double waist = UpDownGirthWaist.Value ?? 0; // талия
@@ -263,7 +264,7 @@ namespace VIO
             DisplayBodyTypeImage(bodyType);
         }
 
-        // получение плана питания, открытие окна с предпочтениями
+        // открытие окна с предпочтениями
         private void ButtonPlan_Click(object sender, RoutedEventArgs e)
         {
             NotificationPopup.IsOpen = true;
@@ -278,23 +279,27 @@ namespace VIO
             if (RBVegetarian.IsChecked == true)
             {
                 resultRB = 1;
+                ExecuteMealPlan(resultRB);
             }
             else if (RBVegan.IsChecked == true)
             {
                 resultRB = 2;
+                ExecuteMealPlan(resultRB);
             }
             else if (RBStandart.IsChecked == true)
             {
                 resultRB = 3;
+                ExecuteMealPlan(resultRB);
+            }
+            else if (resultRB == 0)
+            {
+                MessageBox.Show((string)Application.Current.Resources["Preferences"]);
             }
 
-            // Закрываем Popup
             NotificationPopup.IsOpen = false;
-
-            // Выполняем основное действие после получения выбора
-            ExecuteMealPlan(resultRB);
         }
 
+        // получение плана питания в Word
         private void ExecuteMealPlan(int resultRB)
         {
             MealPlan plan = new MealPlan(resultRB);
@@ -303,11 +308,7 @@ namespace VIO
             word.RecordWord(resultRB);
         }
 
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
+        // для обновления картинки
         private void tabResults_Loaded(object sender, RoutedEventArgs e)
         {
             UpDownGirthWaist.ValueChanged += UpDown_ValueChanged;
@@ -322,7 +323,7 @@ namespace VIO
             UpdatePicture();
         }
 
-
+        // загрузка видео с тренировками
         private void buttonWorkout_Click(object sender, RoutedEventArgs e)
         {
             int sliderValue = (int)sliderActivity.Value;
@@ -351,11 +352,13 @@ namespace VIO
             }
         }
 
+        // установка текущей даты
         private void tabParameters_Loaded(object sender, RoutedEventArgs e)
         {
             DatePickerRecording.SelectedDate = DateTime.Now;
         }
 
+        // вывод результатов
         private void mainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.Source is TabControl)
@@ -363,8 +366,10 @@ namespace VIO
                 TabItem selectedTab = (TabItem)mainTabControl.SelectedItem;
             }
 
-            int goal = comboboxGoal.SelectedIndex; // ЦЕЛЬ!!! Ю НОУ???  -yeee
-           
+            int goal;
+            try { goal = comboboxGoal.SelectedIndex; }
+            catch { goal = 1; }
+
             accountManager = AccountManager.getInstance();
             gender = accountManager.UserDataSelect();
 
@@ -439,6 +444,7 @@ namespace VIO
             }
         }
 
+        // уведомление для ИМТ
         private void NotificationImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             double bmi = 0;
@@ -468,6 +474,7 @@ namespace VIO
             }
         }
 
+        // получение записей в Excel
         private void buttonExcel_Click(object sender, RoutedEventArgs e)
         {
             Excel excel = new Excel();

@@ -39,6 +39,7 @@ namespace VIO
             InitializeVisibility();
         }
 
+        // видимость элементов
         private void InitializeVisibility()
         {
             passwordBox.Visibility = Visibility.Visible;
@@ -47,6 +48,7 @@ namespace VIO
             OpenedEyeImage.Visibility = Visibility.Collapsed;
         }
 
+        // скрытие пароля
         private void ClosedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             textBox.Text = passwordBox.Password;
@@ -56,6 +58,7 @@ namespace VIO
             OpenedEyeImage.Visibility = Visibility.Visible;
         }
 
+        // видимость пароля
         private void OpenedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             passwordBox.Password = textBox.Text;
@@ -70,6 +73,7 @@ namespace VIO
             ChangeLanguage(lang);
         }
 
+        // изменение языка
         private void ChangeLanguage(string lang)
         {
             var dict = new ResourceDictionary
@@ -106,6 +110,7 @@ namespace VIO
             UpdateComboBoxItems();
         }
 
+        // изменение языка в комбобоксе
         private void UpdateComboBoxItems()
         {
             ComboBoxItem femaleItem = (ComboBoxItem)FindName("ComboBoxFemale");
@@ -117,11 +122,13 @@ namespace VIO
                 maleItem.Content = Application.Current.Resources["Male"];
         }
 
+        // закрытие окна
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        // проверка полей для ввода
         private bool AreFieldsValid()
         {
             string loginPattern = @"^[a-zA-Z0-9]{4,12}$"; // Логин может содержать только буквы латиницы и цифры, длина от 4 до 12 символов
@@ -146,12 +153,14 @@ namespace VIO
                    !string.IsNullOrWhiteSpace(comboboxGender.Text);
         }
 
+        // создание аккаунта
         private void initAccount(string login, string password)
         {
             accountManager = AccountManager.getInstance(true);
             accountManager.SetUserCred(login, password);
         }
 
+        // проверка регистрации
         private void buttonRegisrtation_Click(object sender, RoutedEventArgs e)
         {
             login = textBoxLogin.Text;
@@ -169,7 +178,7 @@ namespace VIO
 
             // Проверка возраста
             int age = DateTime.Now.Year - birthday.Year;
-            if (DateTime.Now < birthday.AddYears(age)) // Корректируем возраст, если день рождения еще не наступил в этом году
+            if (DateTime.Now < birthday.AddYears(age))
             {
                 age--;
             }

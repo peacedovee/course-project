@@ -63,7 +63,7 @@
                                        Value="40.00" Increment="0.01" FormatString="F2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <ComboBox x:Name="comboboxWrist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,181,0,0" 
                               Width="153" FontFamily="Cooper Black" FontSize="16" Background="#EEE2DC" Foreground="#BAB2B5" Grid.Column="1">
-                        <ComboBoxItem x:Name="ComboBoxLess15" Content="&lt;15" />
+                        <ComboBoxItem x:Name="ComboBoxLess15" Content="&lt;15" IsSelected="True" />
                         <ComboBoxItem x:Name="ComboBoxBetween" Content="15-17" />
                         <ComboBoxItem x:Name="ComboBoxMore17" Content=">17" />
                     </ComboBox>
@@ -92,7 +92,7 @@
                     <ComboBox x:Name="comboboxGoal" HorizontalAlignment="Left" VerticalAlignment="Top" 
                         Margin="246,177,0,0" Width="193"
                         FontFamily="Cooper Black" FontSize="15" 
-                        Background="#EEE2DC" Foreground="#123C69" SelectionChanged="ComboBox_SelectionChanged">
+                        Background="#EEE2DC" Foreground="#123C69">
                         <ComboBoxItem x:Name="ComboBoxGainWeight" Content="{DynamicResource GainWeight}" />
                         <ComboBoxItem x:Name="ComboBoxLoseWeight" Content="{DynamicResource LoseWeight}" IsSelected="True" />
                         <ComboBoxItem x:Name="ComboBoxMaintainWeight" Content="{DynamicResource MaintainWeight}" />

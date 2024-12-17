@@ -29,6 +29,7 @@ namespace VIO
             InitializeVisibility();
         }
 
+        // видимость элементов
         private void InitializeVisibility() 
         { 
             passwordBox.Visibility = Visibility.Visible; 
@@ -37,6 +38,7 @@ namespace VIO
             OpenedEyeImage.Visibility = Visibility.Collapsed; 
         }
 
+        // регистрация пользователей
         private void ButtonRegistration_Click(object sender, RoutedEventArgs e)
         {
             var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
@@ -47,6 +49,7 @@ namespace VIO
         public delegate void LanguageChangedEventHandler(string lang);
         public static event LanguageChangedEventHandler LanguageChanged;
 
+        // выбор языка
         private void comboBoxLanguage_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
@@ -54,6 +57,7 @@ namespace VIO
             LanguageChanged?.Invoke(selectedLanguage);
         }
 
+        // изменение языка
         private void ChangeLanguage(string lang)
         {
             var dict = new ResourceDictionary
@@ -86,26 +90,29 @@ namespace VIO
             buttonRegistration.Content = Application.Current.Resources["Registration"];
         }
 
+        // вход в аккаунт
         private void initAccount(string login, string password)
         {
             accountManager = AccountManager.getInstance(true);
             accountManager.SetUserCred(login, password);
         }
+
+        // вход в программу
         private void buttonEntrance_Click(object sender, RoutedEventArgs e)
         {
             login = textBoxLogin.Text;
             password = passwordBox.Password;
 
-            //accountManager = AccountManager.getInstance();
             initAccount(login, password);
 
-            int proverka = accountManager.Authorization(); // Я ИЗМЕНИЛА ПРОВЕРКУ, ВОЗВРАЩЕТСЯ ID ПОЛЬЗОВАТЕЛЯ, Ю НОУ?
+            int cheking = accountManager.Authorization();
 
-            if (proverka > 0)
+            if (cheking > 0)
             {
                 var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
                 var windowParameters = new WindowParameters(selectedLanguage);
-                windowParameters.ShowDialog();
+                windowParameters.Show();
+                this.Close();
             }
             else
             {
@@ -113,6 +120,7 @@ namespace VIO
             }
         }
 
+        // скрытие пароля
         private void ClosedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             textBox.Text = passwordBox.Password;
@@ -122,6 +130,7 @@ namespace VIO
             OpenedEyeImage.Visibility = Visibility.Visible;
         }
 
+        // видимость пароля
         private void OpenedEyeImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             passwordBox.Password = textBox.Text;
@@ -129,11 +138,6 @@ namespace VIO
             passwordBox.Visibility = Visibility.Visible;
             OpenedEyeImage.Visibility = Visibility.Collapsed;
             ClosedEyeImage.Visibility = Visibility.Visible;
-        }
-
-        private void textBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
