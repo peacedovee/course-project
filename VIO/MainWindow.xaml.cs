@@ -14,7 +14,7 @@ using System.Xml.Linq;
 namespace VIO
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -37,7 +37,7 @@ namespace VIO
             OpenedEyeImage.Visibility = Visibility.Collapsed; 
         }
 
-        private void buttonRegistration_Click(object sender, RoutedEventArgs e)
+        private void ButtonRegistration_Click(object sender, RoutedEventArgs e)
         {
             var selectedLanguage = ((ComboBoxItem)comboBoxLanguage.SelectedItem).Tag.ToString();
             var windowRegistration = new WindowRegistration(selectedLanguage);

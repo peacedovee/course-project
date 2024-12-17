@@ -10,7 +10,11 @@ using System.Windows.Media.Media3D;
 
 namespace VIO
 {
-    internal class Calculation
+    /** 
+    * \class Calculation
+    * \brief Класс для вычисления данных
+    */
+    public class Calculation  // Класс для вычисления данных
     {
         AccountManager accountManager;
         int height;
@@ -18,23 +22,30 @@ namespace VIO
         int age;
         float coef;
 
-        private void Data()
+         /** 
+         * \brief Устанавливает значения 
+         */
+        public void SetData(int age, int height, float weight, float coef) // Установка значений
+        {
+            this.age = age; 
+            this.height = height; 
+            this.weight = weight; 
+            this.coef = coef;
+        }
+
+         /** 
+         * \brief Получает данные из другого класса
+         */
+        public virtual void Data() // Получение данных из AccountManager
         {
             accountManager = AccountManager.getInstance();
             (age, height, weight, coef) = accountManager.CalculateData();
-
-
         }
 
-        //public double CalculationBmi()
-        //{
-        //    Data();
-        //    double bmi = weight / Math.Pow(height, 2) * 10000;
-
-        //    return bmi;
-        //}
-
-        public double CalculationBmi()
+         /** 
+         * \brief Рассчитывает индекс массы тела 
+         */
+        public double CalculationBmi() // Расчёт ИМТ
         {
             Data();
 
@@ -44,20 +55,37 @@ namespace VIO
             }
 
             double bmi = weight / Math.Pow(height, 2) * 10000;
-            return double.IsNaN(bmi) ? 0 : bmi;
+            return bmi;
         }
 
-
-        public float CalculationCalories()
+         /** 
+         * \brief Расчитывает суточное потребление калорий 
+         */
+        public float CalculationCalories(int gender) // Расчёт калорий
         {
             float calories = 0;
 
-            calories = (float)((10 * weight) + (6.25 * height) - (5 * age) - 161);
+            if (gender == 0)
+            {
+                calories = (float)((10 * weight) + (6.25 * height) - (5 * age) - 161);
+            }
+            else if (gender == 1) 
+            {
+                calories = (float)((10 * weight) + (6.25 * height) - (5 * age) + 5);
+            }
+
+            if (calories < 100)
+            {
+                return 0;
+            }
 
             return calories;
         }
 
-        public int CalculationWater()
+         /** 
+         * \brief Рассчитывает суточное потребление воды
+         */
+        public int CalculationWater() // Расчёт потребления воды
         {
             int water = 0;
 
@@ -66,14 +94,37 @@ namespace VIO
             return water;
         }
 
-        public float IdealWeight()
+         /** 
+         * \brief Рассчитывает идеальный вес
+         */
+        public float IdealWeight() // Расчёт иделаьного веса
         {
             float idealWeight = 0;
 
-            idealWeight = (float)((height - 100 + (age / 10)) * 0.9 * coef); 
-            //Идеальный вес = (рост(см) – 100 + (возраст / 10)) х 0.9 х коэффициент запястья
+            idealWeight = (float)((height - 100 + (age / 10)) * 0.9 * coef);
+
+            if (idealWeight == 0)
+            {
+                return 0;
+            }
 
             return idealWeight;
         }
     }
+
+    /** 
+    * \class TestableCalculation
+    * \brief Класс для Unit-тестов
+    */
+    public class TestableCalculation : Calculation  // Класс для Unit-тестов
+    {
+         /** 
+         * \brief Получение даннных
+         */
+        public override void Data() // Получение данных
+        {
+            SetData(30, 175, 70, 1);
+        }
+    }
+
 }

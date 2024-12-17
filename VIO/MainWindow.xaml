@@ -17,7 +17,7 @@
         <Label x:Name="labelWelcome" Grid.Column="1" Content="{DynamicResource Welcome}" HorizontalAlignment="Center" Margin="0,82,0,0" VerticalAlignment="Top"
                FontFamily="Cooper Black" FontSize="17" Foreground="#123C69"/>
         <Button x:Name="buttonRegistration" Grid.Column="1" Content="{DynamicResource Registration}" HorizontalAlignment="Center" Margin="0,273,0,0" VerticalAlignment="Top" 
-            Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="242" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="buttonRegistration_Click"/>
+            Background="#FFEDC7B7" BorderBrush="#AC3B61" Width="242" FontFamily="Cooper Black" FontSize="17" Foreground="#AC3B61" Height="30" Click="ButtonRegistration_Click"/>
         <TextBox x:Name="textBoxLogin" Grid.Column="1" HorizontalAlignment="Center" Margin="0,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                  Width="242" FontFamily="Cooper Black" FontSize="16" Foreground="#BAB2B5" Height="25" TextChanged="textBoxLogin_TextChanged"/>
         <PasswordBox x:Name="passwordBox" Grid.Column="1" HorizontalAlignment="Center" Margin="0,196,0,0" Foreground="#BAB2B5"

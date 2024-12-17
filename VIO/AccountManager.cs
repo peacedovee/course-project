@@ -18,44 +18,50 @@ using System.Windows.Controls;
 
 namespace VIO
 {
-    class AccountManager // Работа с аккаунтами
+    /** 
+     * \class AccountManager
+     * \brief Класс для работы с аккаунтами
+     */
+    class AccountManager // Класс для работы с аккаунтами
     {
-        private static AccountManager? instance;
-        private string? login; 
+        private static AccountManager? instance; // Переменная для хранения единственного экземпляра класса
+        private string? login; // 
         private string? password;
         private string? hashPassword;
         private DatabaseManager database;
-        private int idEntrance;
+        private int idEntrance = 1;
         private DateTime birthday;
 
-        private AccountManager() 
+        private AccountManager() // Приватный конструктор, чтобы предотвратить создание экземпляров извне
         {
             database = new DatabaseManager();
         }
-        public static AccountManager getInstance()
+        public static AccountManager getInstance() // Получение единственного экземпляра класса
         {
             if (instance == null)
                 instance = new AccountManager();
             return instance;
         }
 
-        public static AccountManager getInstance(bool init)
+        public static AccountManager getInstance(bool init) // Перегруженный метод для получения единственного экземпляра класса с возможностью принудительной инициализации
         {
             if (instance == null || init == true)
                 instance = new AccountManager();
             return instance;
         }
 
-        public void SetUserCred(string login, string password)
+        public void SetUserCred(string login, string password) // Установка учетных данных пользователя
         {
             this.login = login;
             this.password = password;
         }
 
+        /** 
+        * \brief Авторизация пользователей
+        */
         public int Authorization() // Авторизация пользователей
         {
             hashPassword = HashPassword();
-            //database = new DatabaseManager();
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
             DataTable table = new DataTable();
 
@@ -74,14 +80,14 @@ namespace VIO
                 return idEntrance;
             }
             else return 0;
-            //return table.Rows.Count == 1 ? 1 : 0;
         }
 
+        /** 
+        * \brief Регистрация пользователей
+        */
         public int Registration(string name, string birthday, int gender) // Регистрация пользователй
         {
             hashPassword= HashPassword();
-            //database = new DatabaseManager();
-            
 
             if (CheckUser())
             {
@@ -125,6 +131,9 @@ namespace VIO
             }
         }
 
+        /** 
+        * \brief Проверка на существование аккаунта
+        */
         private bool CheckUser() // Проверка на существование аккаунта
         {
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -141,6 +150,10 @@ namespace VIO
 
             return table.Rows.Count > 0;
         }
+
+        /** 
+        * \brief Хеширование пароля
+        */
         private string HashPassword() // Хеширование пароля
         {
             MD5 md5 = MD5.Create();
@@ -155,10 +168,12 @@ namespace VIO
             return Convert.ToString(sb);
         }
 
-        public void UserDataInsert(int idEntrance, string name, string birthday, int gender) // Запись данных пользователя
+        /** 
+        * \brief Получение данных пользователя из базы данных
+        */
+        public void UserDataInsert(int idEntrance, string name, string birthday, int gender) // Получение данных пользователя
         {
-            // Перечислим возможные форматы дат
-            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" }; // Попробуем преобразовать строку в DateTime, учитывая несколько возможных форматов
+            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" }; 
             DateTime birthDate; bool isValidDate = DateTime.TryParseExact(birthday, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthDate);
 
             string querystring = $"INSERT INTO UserData (IDEntrance, Name, Birthday, Gender) VALUES (@IDEntrance, @Name, @Birthday, @Gender)";
@@ -176,12 +191,12 @@ namespace VIO
             }
         }
 
-        // Добавила
+        /** 
+        * \brief Запись данных пользователя в базу данных
+        */
         public int UserDataSelect() // Запись данных пользователя
         {
-            //// Перечислим возможные форматы дат
-            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" }; // Попробуем преобразовать строку в DateTime, учитывая несколько возможных форматов
-            //DateTime birthDate; bool isValidDate = DateTime.TryParseExact(birthday, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthDate);
+            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" };
 
             string querystring = $"SELECT IDEntrance, Name, Birthday, Gender FROM UserData WHERE IDEntrance = @IDEntrance";
 
@@ -196,19 +211,20 @@ namespace VIO
                     {
                         string name = reader["Name"].ToString();
                         birthday = Convert.ToDateTime(reader["Birthday"]);
-                        //birthday = DateTime.ParseExact(, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);
                         int gender = Convert.ToInt32(reader["Gender"]);
                         return gender;
                     }
                 }
-               
             }
             database.CloseConnection();
+
             return 2;
-                
         }
 
-        private int DateCount(DateTime recordingDate)
+        /** 
+        * \brief Проверка количества записей на введённую дату
+        */
+        private int DateCount(DateTime recordingDate) // Проверка количества записей на введённую дату
         {
             int dateCount = 0;
 
@@ -227,14 +243,18 @@ namespace VIO
             return dateCount;
         }
 
+        /** 
+        * \brief Запись параметров а базу данных
+        */
+        // Запись параметров пользователя в базу данных
         public int UserParameters(string recordingDate, int hight, float weight, float coef, int girthBreast, int girthWaist, int girthHips)
         {
-            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" }; // Попробуем преобразовать строку в DateTime, учитывая несколько возможных форматов
+            string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" }; 
             DateTime recordingDateFormats; 
             bool isValidDate = DateTime.TryParseExact(recordingDate, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out recordingDateFormats);
 
             int dateCount = DateCount(recordingDateFormats);
-            if (dateCount == 0)
+            if (dateCount == 0) // Если запись на дату есть, то она обновляется
             {
                 string queryString = $"INSERT INTO Parameters (IDUser, RecordingDate, Hight, Weight, CoefGirthWrist,GirthBreast, GirthWaist, GirthHips) VALUES (@IDUser, @RecordingDate, @Hight, @Weight, @CoefGirthWrist, @GirthBreast, @GirthWaist, @GirthHips)";
 
@@ -279,9 +299,11 @@ namespace VIO
             else return 2;
 
         }
-        // Добавила
 
-        public (int age, int height, float weight, float coef) CalculateData() 
+        /** 
+        * \brief Получение параметров пользователя из базы данных
+        */
+        public (int age, int height, float weight, float coef) CalculateData() // Получение параметров пользователя из базы данных
         {
 
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -313,16 +335,18 @@ namespace VIO
             return (0, 0, 0, 0);
         }
 
-        public List<object> GettingAllParameters()
+        /** 
+        * \brief Получение всех парметров пользователя из базы данных
+        */
+        public List<object> GettingAllParameters() // Получение всех параметров пользователя из базы данных
         {
             List<object> records = new List<object>(); 
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
             DataTable table = new DataTable();
 
             string querystring = "SELECT * FROM Parameters WHERE IDUser = @IDUser";
-            using (SQLiteCommand command = new SQLiteCommand(querystring, database.GetConnection())) // замените connectionString на вашу строку подключения
+            using (SQLiteCommand command = new SQLiteCommand(querystring, database.GetConnection())) 
             {
-                
                 command.Parameters.AddWithValue("@IDUser", idEntrance); 
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
@@ -337,7 +361,6 @@ namespace VIO
                 int girthBreast = Convert.ToInt32(row["GirthBreast"]);
                 int girthWaist = Convert.ToInt32(row["GirthWaist"]);
                 int girthHips = Convert.ToInt32(row["GirthHips"]);
-
 
                 records.Add(new
                 {

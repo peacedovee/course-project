@@ -10,7 +10,11 @@ using Microsoft.Win32;
 
 namespace VIO
 {
-    internal class Excel
+    /** 
+     * \class Excel 
+     * \brief Класс для выгрузки всех записей пользователя в Excel
+     */
+    internal class Excel // Класс для выгрузки всех записей пользователя в Excel
     {
         AccountManager accountManager;
         string date;
@@ -24,7 +28,10 @@ namespace VIO
             accountManager = AccountManager.getInstance();
         }
 
-        public void RecordExcel(List<object> records)
+        /** 
+         * \brief Выгружает записи пользователя в Excel 
+         */
+        public void RecordExcel(List<object> records) // Запись в Excel
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel Files|*.xlsx";
@@ -38,7 +45,7 @@ namespace VIO
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (ExcelPackage package = new ExcelPackage())
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Data"); // Записываем заголовки
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Data"); // Запись заголовков
                     worksheet.Cells[1, 1].Value = "Дата записи";
                     worksheet.Cells[1, 2].Value = "Рост";
                     worksheet.Cells[1, 3].Value = "Вес";
@@ -51,7 +58,7 @@ namespace VIO
                     foreach (var record in records)
                     {
                         dynamic rec = record; // Использование dynamic для доступа к полям анонимных объектов
-                                              // Записываем данные
+                                            
                         worksheet.Cells[row, 1].Value = rec.RecordingDate.ToString("yyyy-MM-dd");
                         worksheet.Cells[row, 2].Value = rec.Height;
                         worksheet.Cells[row, 3].Value = rec.Weight;
@@ -65,15 +72,18 @@ namespace VIO
 
                     // Автоматическая подгонка ширины колонок
                     worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
-                    // Сохраняем файл
+
+                    // Сохранение файла
                     FileInfo file = new FileInfo(filePath);
                     package.SaveAs(file);
                     OpenFile(filePath);
                 }
             }
         }
-
-        public void OpenFile(string filePath) 
+        /** 
+         * \brief Открывает файл с записями
+         */
+        public void OpenFile(string filePath) // Открытие файла
         { 
             Process process = new Process(); 
             process.StartInfo.FileName = filePath; 

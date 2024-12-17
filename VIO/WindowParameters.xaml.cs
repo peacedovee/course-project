@@ -27,6 +27,7 @@ namespace VIO
         private int age;
         private int coef;
         private string language;
+        private int gender;
 
         public WindowParameters(string initialLanguage)
         {
@@ -143,7 +144,7 @@ namespace VIO
         // вычисление типа фигуры
         private string DetermineBodyType(double waist, double hips, double bust)
         {
-            int gender = accountManager.UserDataSelect();
+            gender = accountManager.UserDataSelect();
             string suffix = (gender == 0) ? "_w" : "_m"; // Определение суффикса в зависимости от гендера
 
             if (hips < bust && hips > waist)
@@ -362,10 +363,10 @@ namespace VIO
                 TabItem selectedTab = (TabItem)mainTabControl.SelectedItem;
             }
 
-            int goal = comboboxGoal.SelectedIndex; // ЦЕЛЬ!!! Ю НОУ???
-
+            int goal = comboboxGoal.SelectedIndex; // ЦЕЛЬ!!! Ю НОУ???  -yeee
+           
             accountManager = AccountManager.getInstance();
-            int gender = accountManager.UserDataSelect();
+            gender = accountManager.UserDataSelect();
 
             double bmi = 0;
             float calories = 0;
@@ -385,7 +386,16 @@ namespace VIO
             }
 
             // Проверка значения calories
-            calories = calculation.CalculationCalories();
+            calories = calculation.CalculationCalories(gender);
+            if (goal == 0)
+            {
+                calories += 1000;
+            }
+            else if(goal == 2)
+            {
+                calories += 580;
+            }
+
             if (labelCaloriesNumber != null)
             {
                 labelCaloriesNumber.Content = float.IsNaN(calories) ? "0" : ((int)calories).ToString();
@@ -406,7 +416,14 @@ namespace VIO
             }
 
             // Проверка значения bmi для отображения NotificationImage
-            if (bmi < 18.5 || bmi > 24.9)
+            if (bmi == 0)
+            {
+                if (NotificationImage != null)
+                {
+                    NotificationImage.Visibility = Visibility.Hidden;
+                }
+            }
+            else if (bmi < 18.5 || bmi > 24.9)
             {
                 if (NotificationImage != null)
                 {

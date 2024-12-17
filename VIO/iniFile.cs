@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace VIO
 {
-    public class IniFile
+    /** 
+     * \class IniFile 
+     * \brief Класс для работы с Ini файлами 
+     */
+    public class IniFile // Класс для работы с Ini файлами
     {
         public string Path { get; }
 
@@ -23,19 +27,19 @@ namespace VIO
             Path = new FileInfo(iniPath).FullName;
         }
 
-        public string Read(string section, string key, string defaultValue = "")
+        public string Read(string section, string key, string defaultValue = "") 
         {
             var retVal = new StringBuilder(255);
             GetPrivateProfileString(section, key, defaultValue, retVal, 255, Path);
             return retVal.ToString();
         }
 
-        public void Write(string section, string key, string value)
+        public void Write(string section, string key, string value) 
         {
             WritePrivateProfileString(section, key, value, Path);
         }
 
-        public void DeleteKey(string section, string key)
+        public void DeleteKey(string section, string key) 
         {
             Write(section, key, null);
         }

@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace VIO
 {
-    internal class MealPlan
+    /** 
+     * \class MealPlan
+     * \brief Класс для создания плана питания 
+     */
+    internal class MealPlan // Класс для создания плана питания
     {
         DatabaseManager database;
         int resultRB;
@@ -17,13 +21,11 @@ namespace VIO
             database = new DatabaseManager();
             this.resultRB = resultRB;
         }
-        //public MealPlan()
-        //{
-        //    database = new DatabaseManager();
-        //}
 
-
-        public List<(int Id, string ProductName, int Vegan, int Vegetarian, int Standard, int Breakfast, int Lunch, int Dinner, int Snack)> GetRandomMealPlan()
+        /** 
+         * \brief Создаёт случайный план питания 
+         */
+        public List<(int Id, string ProductName, int Vegan, int Vegetarian, int Standard, int Breakfast, int Lunch, int Dinner, int Snack)> GetRandomMealPlan() // Создание случайного плана питания
         {
             var breakfasts = GetMealsByType("Breakfast");
             var lunches = GetMealsByType("Lunch");
@@ -42,8 +44,10 @@ namespace VIO
             return dailyPlan;
         }
 
-
-        private List<(int Id, string ProductName, int Vegan, int Vegetarian, int Standard, int Breakfast, int Lunch, int Dinner, int Snack)> GetMealsByType(string mealType) 
+        /** 
+         * \brief Проверяет, какой тип питания выбран
+         */
+        private List<(int Id, string ProductName, int Vegan, int Vegetarian, int Standard, int Breakfast, int Lunch, int Dinner, int Snack)> GetMealsByType(string mealType) // Проверка на тип питания
         {
             var meals = new List<(int, string, int, int, int, int, int, int, int)>(); 
             string column = mealType; 
@@ -55,6 +59,7 @@ namespace VIO
                 {
                     while (reader.Read())
                     {
+                        // Создание кортежа с информацией о текущем продукте
                         var meal = (Id: reader.GetInt32(0), 
                             ProductName: reader.GetString(1), 
                             Vegan: reader.GetInt32(2), 
@@ -64,20 +69,19 @@ namespace VIO
                             Lunch: reader.GetInt32(6), 
                             Dinner: reader.GetInt32(7), 
                             Snack: reader.GetInt32(8));
-                        // Фильтруем продукты в зависимости от типа питания
+
+                        // Фильтрация продуктов в зависимости от типа питания
                         if ((resultRB == 1 && meal.Vegetarian == 1) || 
                             (resultRB == 2 && meal.Vegan == 1) || 
                             (resultRB == 3 && meal.Standard == 1)) 
                         {
                             meals.Add(meal); 
                         }
-                        
                     }
                 }
                 database.CloseConnection(); 
             } 
             return meals; 
         }
-
     }
 }

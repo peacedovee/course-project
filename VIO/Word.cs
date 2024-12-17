@@ -9,9 +9,20 @@ using Xceed.Words.NET;
 
 namespace VIO
 {
-    class Word
+    /** 
+     * \class Word 
+     * \brief Класс для записи плана питания в Word 
+     */
+    class Word // Класс для записи плана питания в Word 
     {
-        public void RecordWord(int resultRB)
+        /** 
+         * \brief Записывает план питания в файл Word. 
+         * 
+         * Этот метод создает план питания на день и сохраняет его в файл Word. 
+         * 
+         * \param resultRB Результат, определяющий тип плана питания. 
+         */
+        public void RecordWord(int resultRB) // Запись в Word
         {
             MealPlan plan = new MealPlan(resultRB); 
             var dailyPlan = plan.GetRandomMealPlan(); 
@@ -35,7 +46,11 @@ namespace VIO
                 } 
             }
         }
-        private void OpenFile(string filePath)
+
+        /** 
+        * \brief Открывает план питания 
+        */
+        private void OpenFile(string filePath) // Открытие файла
         {
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             process.StartInfo.FileName = filePath;

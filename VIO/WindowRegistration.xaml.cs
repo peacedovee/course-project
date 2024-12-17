@@ -162,9 +162,6 @@ namespace VIO
             DateTime birthday;
             string[] formats = { "MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd" }; 
             DateTime.TryParseExact(birthdayString, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthday);
-            //bool isParsed = DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthday);
-            //DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out birthday);
-            //DateTime.TryParseExact(birthdayString, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out birthday);
 
             int gender = comboboxGender.SelectedIndex;
 
